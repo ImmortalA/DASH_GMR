@@ -1,0 +1,32 @@
+# Motion data (too large for GitHub)
+motion_data/
+test_results/
+
+# Large model files
+assets/body_models/smplx/
+*.pkl
+*.npz
+*.zip
+*.tar.bz2
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log

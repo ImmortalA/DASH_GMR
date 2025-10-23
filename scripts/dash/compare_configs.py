@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""
+Compare current configuration with URDF-generated configuration
+"""
+
+import json
+
+def compare_configs():
+    """Compare the two configurations"""
+    
+    # Load current configuration
+    with open('general_motion_retargeting/ik_configs/smplx_to_dash.json', 'r') as f:
+        current_config = json.load(f)
+    
+    # Load URDF-generated configuration
+    with open('../../configs/dash/smplx_to_dash_from_urdf_fixed.json', 'r') as f:
+        urdf_config = json.load(f)
+    
+    print("Configuration Comparison")
+    print("=" * 50)
+    
+    # Compare basic settings
+    print("\n📊 Basic Settings:")
+    print(f"  Current scale factor: {current_config['human_scale_table']['pelvis']:.2f}")
+    print(f"  URDF scale factor:    {urdf_config['human_scale_table']['pelvis']:.2f}")
+    print(f"  Difference:           {urdf_config['human_scale_table']['pelvis'] - current_config['human_scale_table']['pelvis']:.2f}")
+    
+    # Compare scale tables
+    print("\n📏 Scale Table Comparison:")
+    print("  Body Part          Current    URDF      Difference")
+    print("  " + "-" * 50)
+    
+    for body_part in current_config['human_scale_table']:
+        if body_part in urdf_config['human_scale_table']:
+            current_scale = current_config['human_scale_table'][body_part]
+            urdf_scale = urdf_config['human_scale_table'][body_part]
+            diff = urdf_scale - current_scale
+            print(f"  {body_part:<15} {current_scale:>8.2f}  {urdf_scale:>8.2f}  {diff:>8.2f}")
+    
+    # Compare IK weights
+    print("\n⚖️  IK Weight Comparison:")
+    print("  Robot Part          Current Pos/Rot    URDF Pos/Rot")
+    print("  " + "-" * 50)
+    
+    for robot_part in current_config['ik_match_table1']:
+        if robot_part in urdf_config['ik_match_table1']:
+            current_entry = current_config['ik_match_table1'][robot_part]
+            urdf_entry = urdf_config['ik_match_table1'][robot_part]
+            
+            current_pos, current_rot = current_entry[1], current_entry[2]
+            urdf_pos, urdf_rot = urdf_entry[1], urdf_entry[2]
+            
+            print(f"  {robot_part:<15} {current_pos:>3}/{current_rot:<3}        {urdf_pos:>3}/{urdf_rot:<3}")
+    
+    # Compare rotation offsets
+    print("\n🔄 Rotation Offset Comparison:")
+    print("  Robot Part          Current Quaternion        URDF Quaternion")
+    print("  " + "-" * 70)
+    
+    for robot_part in current_config['ik_match_table1']:
+        if robot_part in urdf_config['ik_match_table1']:
+            current_entry = current_config['ik_match_table1'][robot_part]
+            urdf_entry = urdf_config['ik_match_table1'][robot_part]
+            
+            current_quat = current_entry[4]
+            urdf_quat = urdf_entry[4]
+            
+            print(f"  {robot_part:<15} [{current_quat[0]:.2f}, {current_quat[1]:.2f}, {current_quat[2]:.2f}, {current_quat[3]:.2f}]  [{urdf_quat[0]:.2f}, {urdf_quat[1]:.2f}, {urdf_quat[2]:.2f}, {urdf_quat[3]:.2f}]")
+    
+    # Recommendations
+    print("\n💡 Recommendations:")
+    print("  1. The URDF configuration uses a scale factor of 0.52 (robot is ~52% of human size)")
+    print("  2. Your current configuration uses 0.8 (80% of human size)")
+    print("  3. The URDF configuration is more accurate to your robot's actual dimensions")
+    print("  4. Consider testing the URDF configuration for better motion scaling")
+    
+    print("\n🎯 Next Steps:")
+    print("  1. Test the URDF configuration: cp configs/dash/smplx_to_dash_from_urdf_fixed.json general_motion_retargeting/ik_configs/smplx_to_dash.json")
+    print("  2. Run motion retargeting tests with the new configuration")
+    print("  3. Compare motion quality between the two configurations")
+    print("  4. Adjust weights and offsets based on your robot's performance")
+
+if __name__ == "__main__":
+    compare_configs()
