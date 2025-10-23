@@ -1,0 +1,451 @@
+{
+  "robot_data": {
+    "joints": {
+      "r_hip_yaw": {
+        "type": "revolute",
+        "parent": "torso",
+        "child": "r_hip"
+      },
+      "r_hip_roll": {
+        "type": "revolute",
+        "parent": "r_hip",
+        "child": "r_dist_hip"
+      },
+      "r_hip_pitch": {
+        "type": "revolute",
+        "parent": "r_dist_hip",
+        "child": "r_upper_leg"
+      },
+      "r_knee_pitch": {
+        "type": "revolute",
+        "parent": "r_upper_leg",
+        "child": "r_lower_leg"
+      },
+      "r_ankle_pitch": {
+        "type": "revolute",
+        "parent": "r_lower_leg",
+        "child": "r_foot"
+      },
+      "l_hip_yaw": {
+        "type": "revolute",
+        "parent": "torso",
+        "child": "l_hip"
+      },
+      "l_hip_roll": {
+        "type": "revolute",
+        "parent": "l_hip",
+        "child": "l_dist_hip"
+      },
+      "l_hip_pitch": {
+        "type": "revolute",
+        "parent": "l_dist_hip",
+        "child": "l_upper_leg"
+      },
+      "l_knee_pitch": {
+        "type": "revolute",
+        "parent": "l_upper_leg",
+        "child": "l_lower_leg"
+      },
+      "l_ankle_pitch": {
+        "type": "revolute",
+        "parent": "l_lower_leg",
+        "child": "l_foot"
+      },
+      "r_shoulder_pitch": {
+        "type": "revolute",
+        "parent": "torso",
+        "child": "r_prox_shoulder"
+      },
+      "r_shoulder_roll": {
+        "type": "revolute",
+        "parent": "r_prox_shoulder",
+        "child": "r_dist_shoulder"
+      },
+      "r_shoulder_yaw": {
+        "type": "revolute",
+        "parent": "r_dist_shoulder",
+        "child": "r_upper_arm"
+      },
+      "r_elbow_pitch": {
+        "type": "revolute",
+        "parent": "r_upper_arm",
+        "child": "r_lower_arm"
+      },
+      "l_shoulder_pitch": {
+        "type": "revolute",
+        "parent": "torso",
+        "child": "l_prox_shoulder"
+      },
+      "l_shoulder_roll": {
+        "type": "revolute",
+        "parent": "l_prox_shoulder",
+        "child": "l_dist_shoulder"
+      },
+      "l_shoulder_yaw": {
+        "type": "revolute",
+        "parent": "l_dist_shoulder",
+        "child": "l_upper_arm"
+      },
+      "l_elbow_pitch": {
+        "type": "revolute",
+        "parent": "l_upper_arm",
+        "child": "l_lower_arm"
+      }
+    },
+    "links": {
+      "torso": {
+        "mass": 10.8104
+      },
+      "r_hip": {
+        "mass": 1.66549
+      },
+      "r_dist_hip": {
+        "mass": 1.80153
+      },
+      "r_upper_leg": {
+        "mass": 2.55930636
+      },
+      "r_lower_leg": {
+        "mass": 1.18115
+      },
+      "r_foot": {
+        "mass": 0.28305631
+      },
+      "l_hip": {
+        "mass": 1.66549
+      },
+      "l_dist_hip": {
+        "mass": 1.80153
+      },
+      "l_upper_leg": {
+        "mass": 2.55930642
+      },
+      "l_lower_leg": {
+        "mass": 1.18115
+      },
+      "l_foot": {
+        "mass": 0.283056
+      },
+      "r_prox_shoulder": {
+        "mass": 1.26433
+      },
+      "r_dist_shoulder": {
+        "mass": 1.02859
+      },
+      "r_upper_arm": {
+        "mass": 1.50071
+      },
+      "r_lower_arm": {
+        "mass": 0.339126
+      },
+      "l_prox_shoulder": {
+        "mass": 1.26433
+      },
+      "l_dist_shoulder": {
+        "mass": 1.02859
+      },
+      "l_upper_arm": {
+        "mass": 1.50071
+      },
+      "l_lower_arm": {
+        "mass": 0.339126
+      }
+    },
+    "joint_limits": {
+      "r_hip_yaw": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_hip_roll": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_hip_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_knee_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_ankle_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_hip_yaw": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_hip_roll": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_hip_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_knee_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_ankle_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_shoulder_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_shoulder_roll": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_shoulder_yaw": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "r_elbow_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_shoulder_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_shoulder_roll": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_shoulder_yaw": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      },
+      "l_elbow_pitch": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793,
+        "effort": 10.0,
+        "velocity": 10.0,
+        "range": 6.283185307179586
+      }
+    },
+    "link_masses": {
+      "torso": 10.8104,
+      "r_hip": 1.66549,
+      "r_dist_hip": 1.80153,
+      "r_upper_leg": 2.55930636,
+      "r_lower_leg": 1.18115,
+      "r_foot": 0.28305631,
+      "l_hip": 1.66549,
+      "l_dist_hip": 1.80153,
+      "l_upper_leg": 2.55930642,
+      "l_lower_leg": 1.18115,
+      "l_foot": 0.283056,
+      "r_prox_shoulder": 1.26433,
+      "r_dist_shoulder": 1.02859,
+      "r_upper_arm": 1.50071,
+      "r_lower_arm": 0.339126,
+      "l_prox_shoulder": 1.26433,
+      "l_dist_shoulder": 1.02859,
+      "l_upper_arm": 1.50071,
+      "l_lower_arm": 0.339126
+    }
+  },
+  "joint_analysis": {
+    "r_hip_yaw": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_hip_roll": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_hip_pitch": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_knee_pitch": {
+      "type": "knee",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_ankle_pitch": {
+      "type": "ankle",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_hip_yaw": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_hip_roll": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_hip_pitch": {
+      "type": "hip",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_knee_pitch": {
+      "type": "knee",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_ankle_pitch": {
+      "type": "ankle",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_shoulder_pitch": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_shoulder_roll": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_shoulder_yaw": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "r_elbow_pitch": {
+      "type": "elbow",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_shoulder_pitch": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_shoulder_roll": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_shoulder_yaw": {
+      "type": "shoulder",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    },
+    "l_elbow_pitch": {
+      "type": "elbow",
+      "range_deg": 360.0,
+      "effort": 10.0,
+      "velocity": 10.0,
+      "flexibility": 2.0,
+      "power": 100.0
+    }
+  },
+  "timestamp": "2025-10-23T23:09:56"
+}
