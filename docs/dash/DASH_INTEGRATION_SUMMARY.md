@@ -66,7 +66,6 @@ The DASH humanoid robot has been successfully integrated into the GMR (General M
 │   └── vis_robot_motion.py               # Visualization
 ├── DASH_ROBOT_INSTRUCTIONS.md            # User guide
 ├── DASH_IK_CONFIGURATION_GUIDE.md        # Configuration guide
-├── dash_mapping_analysis.md              # Technical analysis
 └── test_dash_robot.sh                    # Automated testing
 ```
 
@@ -135,7 +134,6 @@ python scripts/bvh_to_robot.py --robot dash --bvh_file your_motion.bvh --save_pa
 
 - **User Guide**: `DASH_ROBOT_INSTRUCTIONS.md`
 - **Configuration Guide**: `DASH_IK_CONFIGURATION_GUIDE.md`
-- **Technical Analysis**: `dash_mapping_analysis.md`
 - **Test Results**: `TEST_MOTIONS.md` (updated)
 - **Main README**: `README.md` (updated with DASH support)
 

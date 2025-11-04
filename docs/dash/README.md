@@ -10,7 +10,6 @@ This directory contains all documentation related to the DASH robot integration 
 
 ### **Technical Documentation**
 - **[DASH_INTEGRATION_SUMMARY.md](DASH_INTEGRATION_SUMMARY.md)** - Comprehensive integration summary and technical details
-- **[dash_mapping_analysis.md](dash_mapping_analysis.md)** - Technical analysis of motion mapping and optimization
 
 ## Quick Start
 
