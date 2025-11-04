@@ -3,7 +3,7 @@ In our ik config such as `smplx_to_g1.json` or `smplx_to_dash.json`, you might f
 
 ## DASH Robot Configuration
 
-The DASH robot uses an **optimized motion-based configuration** that provides superior motion retargeting quality:
+The DASH robot uses an optimized motion-based configuration that provides superior motion retargeting quality:
 
 - **Motion-based scaling**: Scale factors derived from actual human motion analysis
 - **Optimized weights**: Feet (100/40), Torso (100/25), Joints (0/20)
@@ -20,6 +20,7 @@ The DASH robot uses an **optimized motion-based configuration** that provides su
 ### Documentation
 - `docs/dash/DASH_IK_CONFIGURATION_GUIDE.md` - Detailed configuration guide
 - `docs/dash/DASH_ROBOT_INSTRUCTIONS.md` - Complete user guide
+- `docs/dash/README.md` - Documentation index
 ```json
 "ik_match_table1": {
         "pelvis": [ # robot's body name

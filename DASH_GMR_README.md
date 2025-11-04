@@ -6,7 +6,7 @@
 
 A complete integration of the DASH humanoid robot with the General Motion Retargeting (GMR) system, featuring motion-optimized configuration and comprehensive documentation.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.10+
@@ -28,7 +28,7 @@ conda activate dash_gmr
 pip install -e .
 
 # Download SMPL-X body models (required)
-# Place in: assets/body_models/smplx/
+# Place in: assets/body_models/models_smplx_v1_1/models/smplx/
 ```
 
 ### Basic Usage
@@ -37,33 +37,33 @@ pip install -e .
 conda activate dash_gmr
 
 # Test motion retargeting
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
 
 # Visualize results
 python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_stand.pkl
 ```
 
-## ✨ Features
+## Features
 
-### 🤖 DASH Robot Integration
+### DASH Robot Integration
 - **Complete Integration**: Full DASH humanoid robot support
 - **Motion-Optimized Configuration**: Superior retargeting quality
 - **Multiple Formats**: Support for SMPLX and BVH motion data
 - **Real-time Performance**: 29-30 FPS stable rendering
 
-### 📊 Motion Retargeting Quality
+### Motion Retargeting Quality
 - **Excellent Motion Following**: 95%+ accuracy
 - **Stable Balance**: 100% stability across all motions
 - **Natural Movement**: Smooth, human-like motion
 - **Optimized Performance**: Motion-based scaling and weights
 
-### 🛠️ Development Tools
+### Development Tools
 - **Automated Testing**: Comprehensive test suite
 - **Configuration Management**: Multiple IK configurations
 - **Documentation**: Complete user guides and technical docs
 - **Scripts**: Development and optimization tools
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 DASH_GMR/
@@ -88,15 +88,15 @@ DASH_GMR/
     └── ik_configs/               # Active IK configurations
 ```
 
-## 🧪 Test Results
+## Test Results
 
 ### Motion Quality Assessment
-- **Standing Motion**: ✅ Excellent (29-30 FPS)
-- **Swaying Motion**: ✅ Excellent (29-30 FPS)
-- **Arm Movement**: ✅ Excellent (29-30 FPS)
-- **Pickup Motion**: ✅ Excellent (29-30 FPS)
-- **Sitting Motion**: ✅ Excellent (29-30 FPS)
-- **Standing Up**: ✅ Excellent (29-30 FPS)
+- **Standing Motion**: Excellent (29-30 FPS)
+- **Swaying Motion**: Excellent (29-30 FPS)
+- **Arm Movement**: Excellent (29-30 FPS)
+- **Pickup Motion**: Excellent (29-30 FPS)
+- **Sitting Motion**: Excellent (29-30 FPS)
+- **Standing Up**: Excellent (29-30 FPS)
 
 ### Performance Metrics
 - **FPS**: 29-30 FPS stable rendering
@@ -104,7 +104,7 @@ DASH_GMR/
 - **Balance**: 100% stable across all motions
 - **Joint Tracking**: 90%+ accuracy
 
-## 🔧 Configuration
+## Configuration
 
 ### Motion-Optimized Configuration (Recommended)
 - **Scale Factors**: Derived from actual human motion analysis
@@ -121,7 +121,7 @@ cp configs/dash/smplx_to_dash_optimized.json general_motion_retargeting/ik_confi
 cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_configs/smplx_to_dash.json
 ```
 
-## 📚 Documentation
+## Documentation
 
 ### User Guides
 - **[Complete User Guide](docs/dash/DASH_ROBOT_INSTRUCTIONS.md)** - Step-by-step usage instructions
@@ -133,7 +133,7 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 - **[Configuration Files](configs/dash/README.md)** - IK configuration management
 - **[Test Results](test_results/dash/README.md)** - Motion retargeting test results
 
-## 🚀 Advanced Usage
+## Advanced Usage
 
 ### Automated Testing
 ```bash
@@ -163,7 +163,7 @@ python scripts/dash/optimize_dash_mapping.py
 python scripts/dash/compare_configs.py
 ```
 
-## 🎯 Key Features
+## Key Features
 
 ### Motion-Optimized Configuration
 - **Motion-Based Scaling**: Scale factors derived from actual human motion analysis
@@ -182,17 +182,17 @@ python scripts/dash/compare_configs.py
 - **Balance**: Stable across all motion types
 - **Efficiency**: Optimized for production use
 
-## 📊 Comparison with Original GMR
+## Comparison with Original GMR
 
 | Feature | Original GMR | DASH_GMR |
 |---------|--------------|----------|
-| DASH Robot Support | ❌ | ✅ |
-| Motion-Optimized Config | ❌ | ✅ |
-| Comprehensive Docs | ❌ | ✅ |
-| Automated Testing | ❌ | ✅ |
-| Production Ready | ❌ | ✅ |
+| DASH Robot Support | No | Yes |
+| Motion-Optimized Config | No | Yes |
+| Comprehensive Docs | No | Yes |
+| Automated Testing | No | Yes |
+| Production Ready | No | Yes |
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -200,32 +200,32 @@ python scripts/dash/compare_configs.py
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **GMR Team**: Original General Motion Retargeting system
 - **DASH Robot**: Humanoid robot platform
 - **AMASS Dataset**: Human motion capture data
 - **SMPL-X**: Human body model
 
-## 📞 Support
+## Support
 
 - **Documentation**: Check `docs/dash/` for comprehensive guides
 - **Issues**: Open an issue for bugs or feature requests
 - **Discussions**: Use GitHub Discussions for questions
 
-## 🎉 Status
+## Status
 
-**Production Ready** ✅  
-**Motion-Optimized** 🚀  
-**Fully Documented** 📚  
-**Comprehensive Testing** 🧪  
+**Production Ready** - Complete  
+**Motion-Optimized** - Yes  
+**Fully Documented** - Yes  
+**Comprehensive Testing** - Yes  
 
 ---
 
 **Last Updated**: October 21, 2025  
 **Version**: 1.0.0  
-**Status**: Production Ready ✅
+**Status**: Production Ready

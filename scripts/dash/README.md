@@ -2,7 +2,7 @@
 
 This directory contains all scripts related to the DASH robot integration with GMR.
 
-## 📁 File Organization
+## File Organization
 
 ### **User Scripts**
 - **[test_dash_robot.sh](test_dash_robot.sh)** - Automated testing script
@@ -15,7 +15,7 @@ This directory contains all scripts related to the DASH robot integration with G
 - **[extract_urdf_config_fixed.py](extract_urdf_config_fixed.py)** - Fixed URDF configuration extraction
 - **[compare_configs.py](compare_configs.py)** - Configuration comparison tool
 
-## 🚀 Quick Start
+## Quick Start
 
 ### **1. Automated Testing**
 ```bash
@@ -137,7 +137,7 @@ python scripts/dash/extract_urdf_config_fixed.py
 python scripts/dash/compare_configs.py
 ```
 
-## 🔧 Development Workflow
+## Development Workflow
 
 ### **1. Configuration Development**
 ```bash
@@ -173,7 +173,7 @@ cp configs/dash/smplx_to_dash_optimized.json general_motion_retargeting/ik_confi
 ./scripts/dash/test_dash_robot.sh
 ```
 
-## 📊 Script Outputs
+## Script Outputs
 
 ### **Configuration Files**
 - `smplx_to_dash_optimized.json` - Motion-optimized configuration
@@ -187,15 +187,15 @@ cp configs/dash/smplx_to_dash_optimized.json general_motion_retargeting/ik_confi
 - `test_arms.pkl` - Arm movement test
 - `test_pickup.pkl` - Pickup motion test
 
-## 🧪 Testing Examples
+## Testing Examples
 
 ### **Basic Motion Testing**
 ```bash
 # Test standing motion
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
 
 # Test arm movement
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
 ```
 
 ### **Visualization Testing**
@@ -207,7 +207,7 @@ python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_stand.p
 python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_arms.pkl
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### **Common Issues**
 1. **Environment not activated**: Use `activate_dash_env.sh`
@@ -228,7 +228,7 @@ python scripts/dash/compare_configs.py
 python -c "from general_motion_retargeting.motion_retarget import GeneralMotionRetargeting; retarget = GeneralMotionRetargeting('smplx', 'dash'); print('Robot OK')"
 ```
 
-## 📈 Performance Monitoring
+## Performance Monitoring
 
 ### **FPS Monitoring**
 - Target: 29-30 FPS
@@ -245,7 +245,7 @@ python -c "from general_motion_retargeting.motion_retarget import GeneralMotionR
 - Tool: `compare_configs.py`
 - Criteria: Proper scaling, weight distribution
 
-## 📞 Support
+## Support
 
 For script issues:
 1. Check script documentation
@@ -257,5 +257,5 @@ For script issues:
 ---
 
 **Last Updated**: October 21, 2025  
-**Status**: Production Ready ✅  
-**Quality**: Motion-Optimized 🚀
+**Status**: Production Ready  
+**Quality**: Motion-Optimized

@@ -86,7 +86,7 @@ def create_corrected_dash_config():
     return config
 
 def main():
-    print("🔧 Creating corrected DASH IK configuration...")
+    print("Creating corrected DASH IK configuration...")
     
     # Create corrected configuration
     config = create_corrected_dash_config()
@@ -97,16 +97,16 @@ def main():
     with open('../../configs/dash/smplx_to_dash_corrected.json', 'w') as f:
         json.dump(config, f, indent=4)
     
-    print("✅ Corrected configuration saved to: configs/dash/smplx_to_dash_corrected.json")
+    print("Corrected configuration saved to: configs/dash/smplx_to_dash_corrected.json")
     
-    print("\n🔍 Key improvements:")
+    print("\nKey improvements:")
     print("  1. Better scale factors (0.6 for torso/legs, 0.5 for arms)")
     print("  2. Proper weight distribution (feet: 100/30, torso: 100/20)")
     print("  3. Corrected rotation offsets for better alignment")
     print("  4. Improved arm mapping sequence")
     print("  5. Better balance between position and rotation tracking")
     
-    print("\n🎯 Next steps:")
+    print("\nNext steps:")
     print("  1. Test the corrected configuration")
     print("  2. Compare with current configuration")
     print("  3. Apply if motion quality improves")

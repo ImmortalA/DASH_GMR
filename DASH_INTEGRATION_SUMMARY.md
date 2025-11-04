@@ -57,4 +57,7 @@ python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_results
 ```
 
 ## Status
-✅ **COMPLETE** - DASH robot is fully integrated and working correctly with proper orientation and motion retargeting capabilities.
+
+**COMPLETE** - DASH robot is fully integrated and working correctly with proper orientation and motion retargeting capabilities.
+
+The robot orientation has been fixed to use identity quaternion `[1.0, 0.0, 0.0, 0.0]` for correct upright visualization. All test motions (standing and walking) are working correctly.

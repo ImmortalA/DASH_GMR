@@ -315,7 +315,7 @@ def main():
     joint_limits, link_masses = analyzer.analyze_dash_structure()
     
     # Analyze motion data
-    motion_file = "motion_data/ACCAD/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz"
+    motion_file = "motion_data/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz"
     motion_analysis = analyzer.analyze_motion_data(motion_file)
     
     # Create optimal configuration
@@ -342,10 +342,10 @@ def main():
     success = analyzer.test_configuration(optimal_config, motion_file)
     
     if success:
-        print("\n✅ Configuration test PASSED!")
+        print("\nConfiguration test PASSED!")
         print("Real optimal configuration is ready!")
     else:
-        print("\n❌ Configuration test FAILED!")
+        print("\nConfiguration test FAILED!")
         print("Need to adjust parameters...")
     
     return optimal_config

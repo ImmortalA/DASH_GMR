@@ -404,9 +404,9 @@ def main():
     
     # Analyze motion data
     motion_files = [
-        "motion_data/ACCAD/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz",
-        "motion_data/ACCAD/ACCAD/Male2General_c3d/A5-_Pick_up_box_stageii.npz",
-        "motion_data/ACCAD/ACCAD/s007/QkWalk1_stageii.npz"
+        "motion_data/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz",
+        "motion_data/ACCAD/Male2General_c3d/A5-_Pick_up_box_stageii.npz",
+        "motion_data/ACCAD/s007/QkWalk1_stageii.npz"
     ]
     
     motion_analyses = analyzer.analyze_motion_data_comprehensive(motion_files)

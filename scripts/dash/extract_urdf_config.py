@@ -12,7 +12,7 @@ import json
 def extract_urdf_config(urdf_file):
     """Extract configuration values from URDF file"""
     
-    print("🔍 Analyzing DASH URDF file...")
+    print("Analyzing DASH URDF file...")
     tree = ET.parse(urdf_file)
     root = tree.getroot()
     
@@ -80,7 +80,7 @@ def extract_urdf_config(urdf_file):
 def generate_ik_config(bodies, joints):
     """Generate IK configuration based on URDF analysis"""
     
-    print("📊 Generating IK configuration...")
+    print("Generating IK configuration...")
     
     # Robot body parts available in URDF
     robot_bodies = list(bodies.keys())
@@ -213,10 +213,10 @@ def main():
         with open(output_file, 'w') as f:
             json.dump(config, f, indent=4)
         
-        print(f"\n✅ Configuration saved to: {output_file}")
+        print(f"\nConfiguration saved to: {output_file}")
         
         # Print summary
-        print(f"\n📊 Configuration Summary:")
+        print(f"\nConfiguration Summary:")
         print(f"  - Robot height: {config['human_height_assumption'] * config['human_scale_table']['pelvis']:.2f}m")
         print(f"  - Scale factor: {config['human_scale_table']['pelvis']:.2f}")
         print(f"  - IK mappings: {len(config['ik_match_table1'])}")
@@ -228,19 +228,19 @@ def main():
             print(f"  {body_name}: [{pos[0]:.3f}, {pos[1]:.3f}, {pos[2]:.3f}]")
         
         # Print joint information
-        print(f"\n🔗 Joint Information:")
+        print(f"\nJoint Information:")
         for joint_name, joint_info in joints.items():
             if joint_info['type'] != 'free':
                 print(f"  {joint_name}: {joint_info['type']}, axis: {joint_info['axis']}")
         
-        print(f"\n🎯 Next steps:")
+        print(f"\nNext steps:")
         print(f"  1. Review the generated configuration: {output_file}")
         print(f"  2. Compare with current config: general_motion_retargeting/ik_configs/smplx_to_dash.json")
         print(f"  3. Test the new configuration with your robot")
         print(f"  4. Adjust weights and offsets as needed")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         import traceback
         traceback.print_exc()
 

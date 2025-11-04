@@ -24,16 +24,16 @@ cd /home/anh/daros/GMR
 ### 2. Test Optimized Motion Retargeting
 ```bash
 # Test standing motion (optimized configuration)
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_results/dash/dash_stand_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_results/dash/dash_stand_optimized.pkl
 
 # Test swaying motion
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_results/dash/dash_sway_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_results/dash/dash_sway_optimized.pkl
 
 # Test arm movement
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_results/dash/dash_arms_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_results/dash/dash_arms_optimized.pkl
 
 # Test pickup motion
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_results/dash/dash_pickup_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_results/dash/dash_pickup_optimized.pkl
 ```
 
 ### 3. Visualize Results
@@ -56,7 +56,7 @@ python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_results
 ### ACCAD Dataset (Currently Available)
 ```bash
 # List all available motions
-ls motion_data/ACCAD/ACCAD/Male1General_c3d/
+ls motion_data/ACCAD/Male1General_c3d/
 
 # Some example motions you can test:
 # - General_A1_-_Stand_stageii.npz (Standing)
@@ -84,15 +84,15 @@ echo "=== Test 1: Basic Motions ==="
 
 # Standing motion
 echo "Testing standing motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
 
 # Swaying motion
 echo "Testing swaying motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_sway.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_sway.pkl
 
 # Arm swinging motion
 echo "Testing arm swinging motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
 
 echo "Basic motion tests completed!"
 ```
@@ -103,15 +103,15 @@ echo "=== Test 2: Complex Motions ==="
 
 # Pick up box motion
 echo "Testing pickup motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_pickup.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_pickup.pkl
 
 # Sit down motion
 echo "Testing sit down motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A7_-_Sit_Down_stageii.npz --save_path test_sit.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A7_-_Sit_Down_stageii.npz --save_path test_sit.pkl
 
 # Stand up motion
 echo "Testing stand up motion..."
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A8_-_Stand_Up_stageii.npz --save_path test_standup.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A8_-_Stand_Up_stageii.npz --save_path test_standup.pkl
 
 echo "Complex motion tests completed!"
 ```
@@ -181,7 +181,7 @@ python scripts/smplx_to_robot.py --robot dash --smplx_file YOUR_MOTION_FILE.npz 
 ### Batch Processing
 ```bash
 # Process multiple motions at once
-for motion_file in motion_data/ACCAD/ACCAD/Male1General_c3d/*.npz; do
+for motion_file in motion_data/ACCAD/Male1General_c3d/*.npz; do
     filename=$(basename "$motion_file" .npz)
     echo "Processing $filename..."
     python scripts/smplx_to_robot.py --robot dash --smplx_file "$motion_file" --save_path "batch_${filename}.pkl"
@@ -226,14 +226,14 @@ python scripts/bvh_to_robot.py --robot dash --bvh_file YOUR_BVH_FILE.bvh --save_
 2. **Missing SMPL-X models**
    ```bash
    # Check if models exist
-   ls assets/body_models/smplx/*.pkl
-   ls assets/body_models/smplx/*.npz
+   ls assets/body_models/models_smplx_v1_1/models/smplx/*.pkl
+   ls assets/body_models/models_smplx_v1_1/models/smplx/*.npz
    ```
 
 3. **Motion file not found**
    ```bash
    # Check available motions
-   ls motion_data/ACCAD/ACCAD/Male1General_c3d/
+   ls motion_data/ACCAD/Male1General_c3d/
    ```
 
 4. **Permission issues**
@@ -309,4 +309,4 @@ If you encounter any issues:
 3. Check the file permissions
 4. Review the error messages for specific issues
 
-Your DASH robot is now fully integrated and ready for motion retargeting! 🚀
+Your DASH robot is now fully integrated and ready for motion retargeting.

@@ -181,7 +181,7 @@ def main():
     print(f"Rotation weights range: {min(rot_weights)} - {max(rot_weights)}")
     
     # Test with a motion file
-    test_motion = "motion_data/ACCAD/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz"
+    test_motion = "motion_data/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz"
     if Path(test_motion).exists():
         print(f"\nTesting configuration with: {test_motion}")
         success = analyzer.test_configuration(optimal_config, test_motion)

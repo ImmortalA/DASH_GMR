@@ -236,7 +236,7 @@ def plot_motion_comparison():
     
     plt.tight_layout()
     plt.savefig('motion_comparison.png', dpi=150, bbox_inches='tight')
-    print("📊 Comparison plot saved as 'motion_comparison.png'")
+    print("Comparison plot saved as 'motion_comparison.png'")
     plt.show()
 
 if __name__ == "__main__":

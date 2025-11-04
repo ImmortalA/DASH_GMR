@@ -2,7 +2,7 @@
 
 This directory contains all configuration files for the DASH robot integration with GMR.
 
-## 📁 File Organization
+## File Organization
 
 ### **Active Configuration**
 - **Location**: `general_motion_retargeting/ik_configs/smplx_to_dash.json`
@@ -11,7 +11,7 @@ This directory contains all configuration files for the DASH robot integration w
 
 ### **Alternative Configurations**
 
-#### **smplx_to_dash_optimized.json** ⭐ **RECOMMENDED**
+#### **smplx_to_dash_optimized.json** - **RECOMMENDED**
 - **Type**: Motion-optimized configuration
 - **Features**: 
   - Motion-based scaling factors
@@ -30,7 +30,7 @@ This directory contains all configuration files for the DASH robot integration w
 - **Performance**: Good motion quality, stable performance
 - **Use Case**: Fallback option, basic corrections
 
-## 🔄 Configuration Management
+## Configuration Management
 
 ### **Apply Configuration**
 ```bash
@@ -50,7 +50,7 @@ cp general_motion_retargeting/ik_configs/smplx_to_dash.json.backup general_motio
 cp general_motion_retargeting/ik_configs/smplx_to_dash.json configs/dash/smplx_to_dash_current_backup.json
 ```
 
-## 📊 Configuration Comparison
+## Configuration Comparison
 
 | Feature | Original | Corrected | Optimized |
 |---------|----------|-----------|-----------|
@@ -61,7 +61,7 @@ cp general_motion_retargeting/ik_configs/smplx_to_dash.json configs/dash/smplx_t
 | Balance | Unstable | Stable | Excellent |
 | Performance | 25-29 FPS | 29-30 FPS | 29-30 FPS |
 
-## 🔧 Configuration Details
+## Configuration Details
 
 ### **Scale Factors**
 - **Torso/Legs**: 0.55 (optimized), 0.6 (corrected)
@@ -77,7 +77,7 @@ cp general_motion_retargeting/ik_configs/smplx_to_dash.json configs/dash/smplx_t
 - **Table 1**: Primary mapping with higher weights
 - **Table 2**: Secondary mapping for fine-tuning
 
-## 🧪 Testing Configurations
+## Testing Configurations
 
 ### **Test Script**
 ```bash
@@ -86,17 +86,17 @@ cp general_motion_retargeting/ik_configs/smplx_to_dash.json configs/dash/smplx_t
 
 # Test specific configuration
 cp configs/dash/smplx_to_dash_optimized.json general_motion_retargeting/ik_configs/smplx_to_dash.json
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_optimized.pkl
 ```
 
 ### **Performance Testing**
 ```bash
 # Test different motion types
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_sway.pkl
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A2_-_Sway_stageii.npz --save_path test_sway.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii.npz --save_path test_arms.pkl
 ```
 
-## 📈 Optimization Process
+## Optimization Process
 
 ### **Motion Analysis**
 1. **Human Motion Data**: Analyzed 55 body parts from actual motion
@@ -110,7 +110,7 @@ python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACC
 - **Proper joint alignment**: Corrected quaternion offsets
 - **Dual IK tables**: Primary for stability, secondary for fine-tuning
 
-## 🎯 Recommendations
+## Recommendations
 
 ### **For Production Use**
 - **Use**: `smplx_to_dash_optimized.json`
@@ -127,7 +127,7 @@ python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACC
 - **Modify**: Scale factors, weights, offsets as needed
 - **Test**: Use provided test scripts
 
-## 📞 Support
+## Support
 
 For configuration questions:
 1. Check the documentation in `docs/dash/`
@@ -138,5 +138,5 @@ For configuration questions:
 ---
 
 **Last Updated**: October 21, 2025  
-**Status**: Production Ready ✅  
-**Quality**: Motion-Optimized 🚀
+**Status**: Production Ready  
+**Quality**: Motion-Optimized

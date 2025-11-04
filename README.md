@@ -30,7 +30,7 @@
 
 This repo is licensed under the [MIT License](LICENSE).
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 GMR/
@@ -71,7 +71,7 @@ Starting from its release, **GMR** has been massively used by the community. See
 
 
 # News & Updates
-- **2025-10-21:** **DASH Robot Integration Complete** - Added DASH humanoid robot with motion-optimized IK configuration for superior motion retargeting quality.
+- **2025-10-21:** **DASH Robot Integration Complete** - Added DASH humanoid robot (ID #17) with motion-optimized IK configuration for superior motion retargeting quality. Full documentation available in `docs/dash/`.
 - **2025-10-15:** Now supporting [PAL Robotics' Talos](https://pal-robotics.com/robot/talos/), the 15th humanoid robot.
 - **2025-10-14:** GMR now supports [Nokov](https://www.nokov.com/) BVH data.
 - **2025-10-14:** Add a doc on ik config. See [DOC.md](DOC.md)
@@ -151,27 +151,27 @@ https://github.com/user-attachments/assets/3ec0bf80-80c1-4181-a623-dc2b072c2ca2
 
 | Assigned ID | Robot/Data Format | Robot DoF | SMPLX ([AMASS](https://amass.is.tue.mpg.de/), [OMOMO](https://github.com/lijiaman/omomo_release)) | BVH [LAFAN1](https://github.com/ubisoft/ubisoft-laforge-animation-dataset)| FBX ([OptiTrack](https://www.optitrack.com/)) |  BVH [Nokov](https://www.nokov.com/) | More formats coming soon | 
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | Unitree G1 `unitree_g1` | Leg (2\*6) + Waist (3) + Arm (2\*7) = 29 | ✅ | ✅ | ✅ |  ✅ |
-| 1 | Unitree G1 with Hands `unitree_g1_with_hands` | Leg (2\*6) + Waist (3) + Arm (2\*7) + Hand (2\*7) = 43 | ✅ | ✅ | ✅ | TBD |
-| 2 | Unitree H1 `unitree_h1` | Leg (2\*5) + Waist (1) + Arm (2\*4) = 19 | ✅ | TBD | TBD | TBD |
-| 3 | Unitree H1 2 `unitree_h1_2` | Leg (2\*6) + Waist (1) + Arm (2\*7) = 27 | ✅ | TBD | TBD | TBD |
-| 4 | Booster T1 `booster_t1` | TBD | ✅ |  TBD  | TBD |
-| 5 | Booster T1 29dof `booster_t1_29dof` | TBD | ✅ |  ✅  | TBD | 
-| 6 | Booster K1 `booster_k1` | Neck (2) + Arm (2\*4) + Leg (2\*6) = 22 | ✅ | TBD | TBD |
-| 7 | Stanford ToddlerBot `stanford_toddy` | TBD | ✅ | ✅ | TBD |
-| 8 | Fourier N1 `fourier_n1` | TBD | ✅ | ✅ | TBD |
-| 9 | ENGINEAI PM01 `engineai_pm01` | TBD | ✅ | ✅ | TBD |
-| 10 | HighTorque Hi `hightorque_hi` | Head (2) + Arm (2\*5) + Waist (1) + Leg (2\*6) = 25 | ✅ | TBD | TBD |
-| 11 | Galaxea R1 Pro `galaxea_r1pro` (this is a wheeled robot!) |  Base (6) + Torso (4) + Arm (2*7) = 24 | ✅ | TBD | TBD |
-| 12 | Kuavo `kuavo_s45` |  Head (2) + Arm (2\*7) + Leg (2\*6) = 28 | ✅ | TBD | TBD |
-| 13 | Berkeley Humanoid Lite `berkeley_humanoid_lite` (need further tuning) | Leg (2\*6) + Arm (2\*5) = 22 | ✅ | TBD | TBD |
-| 14 | PND Adam Lite `pnd_adam_lite`  | Leg (2\*6) + Waist (3) + Arm (2\*5) = 25 | ✅ | TBD | TBD |
-| 15 | Tienkung `tienkung`  | Leg (2\*6) + Arm (2\*4) = 20 | ✅ | TBD | TBD |
-| 16 | PAL Robotics' Talos `pal_talos`  | Head (2) + Arm (2\*7) + Waist (2) + Leg (2\*6) = 30 | ✅ | TBD | TBD |
-| 17 | DASH Robot `dash` | Floating Base (6) + Leg (2\*5) + Arm (2\*4) = 24 | ✅ | ✅ | TBD | TBD |
+| 0 | Unitree G1 `unitree_g1` | Leg (2\*6) + Waist (3) + Arm (2\*7) = 29 | Yes | Yes | Yes |  Yes |
+| 1 | Unitree G1 with Hands `unitree_g1_with_hands` | Leg (2\*6) + Waist (3) + Arm (2\*7) + Hand (2\*7) = 43 | Yes | Yes | Yes | TBD |
+| 2 | Unitree H1 `unitree_h1` | Leg (2\*5) + Waist (1) + Arm (2\*4) = 19 | Yes | TBD | TBD | TBD |
+| 3 | Unitree H1 2 `unitree_h1_2` | Leg (2\*6) + Waist (1) + Arm (2\*7) = 27 | Yes | TBD | TBD | TBD |
+| 4 | Booster T1 `booster_t1` | TBD | Yes |  TBD  | TBD |
+| 5 | Booster T1 29dof `booster_t1_29dof` | TBD | Yes |  Yes  | TBD | 
+| 6 | Booster K1 `booster_k1` | Neck (2) + Arm (2\*4) + Leg (2\*6) = 22 | Yes | TBD | TBD |
+| 7 | Stanford ToddlerBot `stanford_toddy` | TBD | Yes | Yes | TBD |
+| 8 | Fourier N1 `fourier_n1` | TBD | Yes | Yes | TBD |
+| 9 | ENGINEAI PM01 `engineai_pm01` | TBD | Yes | Yes | TBD |
+| 10 | HighTorque Hi `hightorque_hi` | Head (2) + Arm (2\*5) + Waist (1) + Leg (2\*6) = 25 | Yes | TBD | TBD |
+| 11 | Galaxea R1 Pro `galaxea_r1pro` (this is a wheeled robot!) |  Base (6) + Torso (4) + Arm (2*7) = 24 | Yes | TBD | TBD |
+| 12 | Kuavo `kuavo_s45` |  Head (2) + Arm (2\*7) + Leg (2\*6) = 28 | Yes | TBD | TBD |
+| 13 | Berkeley Humanoid Lite `berkeley_humanoid_lite` (need further tuning) | Leg (2\*6) + Arm (2\*5) = 22 | Yes | TBD | TBD |
+| 14 | PND Adam Lite `pnd_adam_lite`  | Leg (2\*6) + Waist (3) + Arm (2\*5) = 25 | Yes | TBD | TBD |
+| 15 | Tienkung `tienkung`  | Leg (2\*6) + Arm (2\*4) = 20 | Yes | TBD | TBD |
+| 16 | PAL Robotics' Talos `pal_talos`  | Head (2) + Arm (2\*7) + Waist (2) + Leg (2\*6) = 30 | Yes | TBD | TBD |
+| 17 | DASH Robot `dash` | Floating Base (6) + Leg (2\*5) + Arm (2\*4) = 24 | Yes | Yes | TBD | TBD |
+| 18 | AgiBot A2 `agibot_a2` | TBD | TBD | TBD | TBD |
+| 19 | OpenLoong `openloong` | TBD | TBD | TBD | TBD |
 | More robots coming soon ! |
-| 16 | AgiBot A2 `agibot_a2` | TBD | TBD | TBD | TBD |
-| 17 | OpenLoong `openloong` | TBD | TBD | TBD | TBD |
 
 ## Installation
 
@@ -203,10 +203,10 @@ conda install -c conda-forge libstdcxx-ng -y
 
 [[SMPLX](https://github.com/vchoutas/smplx) body model] download SMPL-X body models to `assets/body_models` from [SMPL-X](https://smpl-x.is.tue.mpg.de/) and then structure as follows:
 ```bash
-- assets/body_models/smplx/
--- SMPLX_NEUTRAL.pkl
--- SMPLX_FEMALE.pkl
--- SMPLX_MALE.pkl
+- assets/body_models/models_smplx_v1_1/models/smplx/
+-- SMPLX_NEUTRAL.pkl (or .npz)
+-- SMPLX_FEMALE.pkl (or .npz)
+-- SMPLX_MALE.pkl (or .npz)
 ```
 
 [[AMASS](https://amass.is.tue.mpg.de/) motion data] download raw SMPL-X data to any folder you want from [AMASS](https://amass.is.tue.mpg.de/). NOTE: Do not download SMPL+H data.

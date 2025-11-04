@@ -2,7 +2,7 @@
 
 This directory contains all documentation related to the DASH robot integration with the GMR (General Motion Retargeting) system.
 
-## 📁 File Organization
+## File Organization
 
 ### **User Guides**
 - **[DASH_ROBOT_INSTRUCTIONS.md](DASH_ROBOT_INSTRUCTIONS.md)** - Complete user guide for using DASH robot with GMR
@@ -12,7 +12,7 @@ This directory contains all documentation related to the DASH robot integration 
 - **[DASH_INTEGRATION_SUMMARY.md](DASH_INTEGRATION_SUMMARY.md)** - Comprehensive integration summary and technical details
 - **[dash_mapping_analysis.md](dash_mapping_analysis.md)** - Technical analysis of motion mapping and optimization
 
-## 🚀 Quick Start
+## Quick Start
 
 ### **1. Basic Usage**
 ```bash
@@ -21,7 +21,7 @@ conda activate daros_dash
 cd /home/anh/daros/GMR
 
 # Test motion retargeting
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz --save_path test_stand.pkl
 
 # Visualize results
 python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_stand.pkl
@@ -45,7 +45,7 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 ./scripts/dash/activate_dash_env.sh
 ```
 
-## 📊 Configuration Files
+## Configuration Files
 
 ### **Active Configuration**
 - **Location**: `general_motion_retargeting/ik_configs/smplx_to_dash.json`
@@ -57,7 +57,7 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 - **Corrected**: `configs/dash/smplx_to_dash_corrected.json` (Basic corrections)
 - **Backup**: `general_motion_retargeting/ik_configs/smplx_to_dash.json.backup` (Original)
 
-## 🧪 Test Results
+## Test Results
 
 ### **Test Files Location**
 - **Directory**: `test_results/dash/`
@@ -70,7 +70,7 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 - **Balance**: Stable (optimized foot tracking)
 - **Joint Alignment**: Accurate (corrected rotation offsets)
 
-## 🔧 Development Tools
+## Development Tools
 
 ### **Scripts Location**
 - **Directory**: `scripts/dash/`
@@ -84,7 +84,7 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 - `extract_urdf_config.py` - URDF configuration extraction
 - `compare_configs.py` - Configuration comparison
 
-## 📈 Key Features
+## Key Features
 
 ### **Motion-Optimized Configuration**
 - **Scale factors**: Derived from actual human motion analysis
@@ -97,14 +97,14 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 - **BVH**: LAFAN1 dataset, Nokov dataset
 - **Real-time**: Compatible with live motion capture
 
-## 🎯 Next Steps
+## Next Steps
 
 1. **Read the user guide**: Start with `DASH_ROBOT_INSTRUCTIONS.md`
 2. **Test basic motions**: Try the quick start examples
 3. **Customize configuration**: Use `DASH_IK_CONFIGURATION_GUIDE.md`
 4. **Explore advanced features**: Check the technical documentation
 
-## 📞 Support
+## Support
 
 For questions or issues:
 1. Check the documentation in this directory
@@ -115,5 +115,5 @@ For questions or issues:
 ---
 
 **Last Updated**: October 21, 2025  
-**Status**: Production Ready ✅  
-**Quality**: Motion-Optimized 🚀
+**Status**: Production Ready  
+**Quality**: Motion-Optimized

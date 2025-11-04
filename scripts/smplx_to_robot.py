@@ -67,7 +67,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    SMPLX_FOLDER = HERE / ".." / "assets" / "body_models"
+    SMPLX_FOLDER = HERE / ".." / "assets" / "body_models" / "models_smplx_v1_1" / "models"
     
     
     # Load SMPLX trajectory

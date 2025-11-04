@@ -24,27 +24,27 @@ def test_hybrid_motions(config_file=None, target_config="smplx_to_dash_hybrid.js
     test_motions = [
         {
             "name": "standing",
-            "file": "motion_data/ACCAD/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz",
+            "file": "motion_data/ACCAD/Male2General_c3d/A1-_Stand_stageii.npz",
             "description": "Basic standing motion"
         },
         {
             "name": "walking", 
-            "file": "motion_data/ACCAD/ACCAD/s007/QkWalk1_stageii.npz",
+            "file": "motion_data/ACCAD/s007/QkWalk1_stageii.npz",
             "description": "Walking motion"
         },
         {
             "name": "pickup",
-            "file": "motion_data/ACCAD/ACCAD/Male2General_c3d/A5-_Pick_up_box_stageii.npz", 
+            "file": "motion_data/ACCAD/Male2General_c3d/A5-_Pick_up_box_stageii.npz", 
             "description": "Pick up box motion"
         },
         {
             "name": "advance",
-            "file": "motion_data/ACCAD/ACCAD/MartialArtsWalksTurns_c3d/E4_-_quick_advance_stageii.npz",
+            "file": "motion_data/ACCAD/MartialArtsWalksTurns_c3d/E4_-_quick_advance_stageii.npz",
             "description": "Quick advance motion"
         },
         {
             "name": "side_step",
-            "file": "motion_data/ACCAD/ACCAD/MartialArtsWalksTurns_c3d/E9_-_side_step_left_stageii.npz",
+            "file": "motion_data/ACCAD/MartialArtsWalksTurns_c3d/E9_-_side_step_left_stageii.npz",
             "description": "Side step motion"
         }
     ]
@@ -131,7 +131,7 @@ def test_hybrid_motions(config_file=None, target_config="smplx_to_dash_hybrid.js
     print(f"Successful: {success_count}/{len(results)}")
     
     for result in results:
-        status_icon = "✓" if result['status'] == 'success' else "✗"
+        status_icon = "PASS" if result['status'] == 'success' else "FAIL"
         print(f"{status_icon} {result['name']}: {result['status']}")
     
     print(f"\nResults saved to: {results_file}")

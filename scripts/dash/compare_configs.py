@@ -20,13 +20,13 @@ def compare_configs():
     print("=" * 50)
     
     # Compare basic settings
-    print("\n📊 Basic Settings:")
+    print("\nBasic Settings:")
     print(f"  Current scale factor: {current_config['human_scale_table']['pelvis']:.2f}")
     print(f"  URDF scale factor:    {urdf_config['human_scale_table']['pelvis']:.2f}")
     print(f"  Difference:           {urdf_config['human_scale_table']['pelvis'] - current_config['human_scale_table']['pelvis']:.2f}")
     
     # Compare scale tables
-    print("\n📏 Scale Table Comparison:")
+    print("\nScale Table Comparison:")
     print("  Body Part          Current    URDF      Difference")
     print("  " + "-" * 50)
     
@@ -38,7 +38,7 @@ def compare_configs():
             print(f"  {body_part:<15} {current_scale:>8.2f}  {urdf_scale:>8.2f}  {diff:>8.2f}")
     
     # Compare IK weights
-    print("\n⚖️  IK Weight Comparison:")
+    print("\nIK Weight Comparison:")
     print("  Robot Part          Current Pos/Rot    URDF Pos/Rot")
     print("  " + "-" * 50)
     
@@ -53,7 +53,7 @@ def compare_configs():
             print(f"  {robot_part:<15} {current_pos:>3}/{current_rot:<3}        {urdf_pos:>3}/{urdf_rot:<3}")
     
     # Compare rotation offsets
-    print("\n🔄 Rotation Offset Comparison:")
+    print("\nRotation Offset Comparison:")
     print("  Robot Part          Current Quaternion        URDF Quaternion")
     print("  " + "-" * 70)
     
@@ -68,13 +68,13 @@ def compare_configs():
             print(f"  {robot_part:<15} [{current_quat[0]:.2f}, {current_quat[1]:.2f}, {current_quat[2]:.2f}, {current_quat[3]:.2f}]  [{urdf_quat[0]:.2f}, {urdf_quat[1]:.2f}, {urdf_quat[2]:.2f}, {urdf_quat[3]:.2f}]")
     
     # Recommendations
-    print("\n💡 Recommendations:")
+    print("\nRecommendations:")
     print("  1. The URDF configuration uses a scale factor of 0.52 (robot is ~52% of human size)")
     print("  2. Your current configuration uses 0.8 (80% of human size)")
     print("  3. The URDF configuration is more accurate to your robot's actual dimensions")
     print("  4. Consider testing the URDF configuration for better motion scaling")
     
-    print("\n🎯 Next Steps:")
+    print("\nNext Steps:")
     print("  1. Test the URDF configuration: cp configs/dash/smplx_to_dash_from_urdf_fixed.json general_motion_retargeting/ik_configs/smplx_to_dash.json")
     print("  2. Run motion retargeting tests with the new configuration")
     print("  3. Compare motion quality between the two configurations")

@@ -10,12 +10,12 @@ from general_motion_retargeting.utils.smpl import load_smplx_file, get_smplx_dat
 def analyze_human_motion():
     """Analyze human motion to understand the movement patterns"""
     
-    print("🔍 Analyzing human motion patterns...")
+    print("Analyzing human motion patterns...")
     
     # Load motion data
     smplx_data, body_model, smplx_output, actual_human_height = load_smplx_file(
-        'motion_data/ACCAD/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz', 
-        'assets/body_models'
+        'motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz', 
+        'assets/body_models/models_smplx_v1_1/models'
     )
     
     # Get processed data
@@ -44,7 +44,7 @@ def analyze_human_motion():
 def create_optimized_config(motion_ranges, human_height):
     """Create optimized configuration based on motion analysis"""
     
-    print("🔧 Creating optimized DASH configuration...")
+    print("Creating optimized DASH configuration...")
     
     # Calculate appropriate scale factors based on motion analysis
     # Focus on body parts that have significant movement
@@ -121,7 +121,7 @@ def create_optimized_config(motion_ranges, human_height):
     return config
 
 def main():
-    print("🚀 Optimizing DASH robot IK mapping...")
+    print("Optimizing DASH robot IK mapping...")
     
     # Analyze human motion
     motion_ranges, human_height = analyze_human_motion()
@@ -138,16 +138,16 @@ def main():
     with open('../../configs/dash/smplx_to_dash_optimized.json', 'w') as f:
         json.dump(config, f, indent=4)
     
-    print("✅ Optimized configuration saved to: configs/dash/smplx_to_dash_optimized.json")
+    print("Optimized configuration saved to: configs/dash/smplx_to_dash_optimized.json")
     
-    print("\n🔍 Key optimizations:")
+    print("\nKey optimizations:")
     print("  1. Motion-based scale factors")
     print("  2. Improved weight distribution")
     print("  3. Better balance between position and rotation tracking")
     print("  4. Optimized for actual human motion patterns")
     
     # Show motion analysis
-    print("\n📊 Motion analysis summary:")
+    print("\nMotion analysis summary:")
     for body_name, motion_data in motion_ranges.items():
         if motion_data['magnitude'] > 0.1:  # Only show significant movements
             print(f"  {body_name}: {motion_data['magnitude']:.3f}m range")

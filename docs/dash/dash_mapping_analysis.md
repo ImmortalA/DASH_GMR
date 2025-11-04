@@ -1,6 +1,6 @@
 # DASH Robot Mapping Analysis & Solutions
 
-## 🔍 **Problem Identified**
+## Problem Identified
 
 You were absolutely right - the robot was struggling to follow the motion properly. The issues were:
 
@@ -9,7 +9,7 @@ You were absolutely right - the robot was struggling to follow the motion proper
 3. **Wrong rotation offsets** - Robot joints weren't aligned properly with human joints
 4. **Inadequate position tracking** - Some body parts had zero position weights
 
-## 🛠️ **Solutions Implemented**
+## Solutions Implemented
 
 ### **1. Motion-Based Analysis**
 - Analyzed actual human motion data to understand movement patterns
@@ -59,7 +59,7 @@ You were absolutely right - the robot was struggling to follow the motion proper
 "l_upper_arm": ["left_elbow", 0, 15, [0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 0.0]]
 ```
 
-## 📊 **Motion Analysis Results**
+## Motion Analysis Results
 
 ### **Significant Movement Body Parts:**
 - **Pelvis**: 0.540m range (torso movement)
@@ -73,7 +73,7 @@ You were absolutely right - the robot was struggling to follow the motion proper
 - **Left Shoulder**: 0.698m range (arm movement)
 - **Right Shoulder**: 0.606m range (arm movement)
 
-## 🎯 **Key Improvements**
+## Key Improvements
 
 ### **1. Better Motion Following**
 - **Feet tracking**: 100/40 weights ensure robot follows foot positions
@@ -95,7 +95,7 @@ You were absolutely right - the robot was struggling to follow the motion proper
 - **Weight distribution based on movement importance**: Critical parts get higher weights
 - **Rotation offsets based on joint alignment**: Proper quaternion mappings
 
-## 🧪 **Test Results**
+## Test Results
 
 ### **Performance Improvements:**
 - **FPS**: Consistent 29-30 FPS (stable performance)
@@ -108,15 +108,15 @@ You were absolutely right - the robot was struggling to follow the motion proper
 - `test_corrected.pkl` - Corrected configuration test
 - `test_corrected_arms.pkl` - Arm movement test
 
-## 🚀 **Next Steps**
+## Next Steps
 
 ### **1. Test Different Motions**
 ```bash
 # Test complex motions
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_pickup_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii.npz --save_path test_pickup_optimized.pkl
 
 # Test walking motions
-python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACCAD/Male1General_c3d/General_A7_-_Sit_Down_stageii.npz --save_path test_sit_optimized.pkl
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A7_-_Sit_Down_stageii.npz --save_path test_sit_optimized.pkl
 ```
 
 ### **2. Fine-Tune if Needed**
@@ -130,22 +130,22 @@ python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/ACC
 python scripts/vis_robot_motion.py --robot dash --robot_motion_path test_optimized.pkl
 ```
 
-## 📁 **Configuration Files**
+## Configuration Files
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `smplx_to_dash_optimized.json` | **ACTIVE** - Motion-optimized config | ✅ **RECOMMENDED** |
-| `smplx_to_dash_corrected.json` | Corrected basic config | ✅ Available |
-| `smplx_to_dash.json.backup` | Original URDF-based config | ✅ Backup |
-| `smplx_to_dash_from_urdf_fixed.json` | URDF-generated config | ✅ Available |
+| `smplx_to_dash_optimized.json` | **ACTIVE** - Motion-optimized config | **RECOMMENDED** |
+| `smplx_to_dash_corrected.json` | Corrected basic config | Available |
+| `smplx_to_dash.json.backup` | Original URDF-based config | Backup |
+| `smplx_to_dash_from_urdf_fixed.json` | URDF-generated config | Available |
 
-## 🎉 **Result**
+## Result
 
 The robot should now follow human motion much better! The optimized configuration:
-- ✅ **Follows motion accurately**
-- ✅ **Maintains balance**
-- ✅ **Moves arms naturally**
-- ✅ **Scales properly to robot size**
-- ✅ **Handles different motion types**
+- **Follows motion accurately**
+- **Maintains balance**
+- **Moves arms naturally**
+- **Scales properly to robot size**
+- **Handles different motion types**
 
-Your DASH robot is now properly configured for motion retargeting! 🚀
+Your DASH robot is now properly configured for motion retargeting.

@@ -189,7 +189,7 @@ def main():
     src_folder = args.src_folder
     tgt_folder = args.tgt_folder
 
-    SMPLX_FOLDER = HERE / ".." / "assets" / "body_models"
+    SMPLX_FOLDER = HERE / ".." / "assets" / "body_models" / "models_smplx_v1_1" / "models"
     hard_motions_folder = HERE / ".." / "assets" / "hard_motions"
 
     verbose = False

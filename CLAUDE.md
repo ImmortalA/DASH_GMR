@@ -32,6 +32,7 @@ conda install -c conda-forge libstdcxx-ng -y
 ### Supported Robots
 
 Core robot models in `assets/` directory:
+- DASH Robot (`dash`) - 24 DOF humanoid with floating base
 - Unitree G1 (`unitree_g1`) - 29 DOF humanoid
 - Booster T1 (`booster_t1`) - Full-body humanoid 
 - Booster K1 (`booster_k1`) - 22 DOF humanoid
@@ -77,7 +78,7 @@ Add `--record_video --video_path <output.mp4>` to any visualization command to r
 - **IK Solver**: Uses mink library with configurable solver (default: "daqp") and damping (default: 5e-1)
 - **Human Height Scaling**: Automatic scaling based on `actual_human_height` parameter vs config assumptions
 - **Real-time Performance**: Optimized for 60-70 FPS on high-end CPUs for teleoperation use cases
-- **Body Model Dependencies**: Requires SMPL-X body models in `assets/body_models/smplx/`
+- **Body Model Dependencies**: Requires SMPL-X body models in `assets/body_models/models_smplx_v1_1/models/smplx/`
 
 ## File Organization
 

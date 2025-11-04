@@ -2,7 +2,7 @@
 # DASH Robot Environment Activation Script
 # This script activates the daros_dash conda environment and sets up the GMR environment
 
-echo "🤖 Activating DASH Robot Environment..."
+echo "Activating DASH Robot Environment..."
 echo ""
 
 # Activate conda environment
@@ -11,9 +11,9 @@ conda activate daros_dash
 
 # Check if activation was successful
 if [[ "$CONDA_DEFAULT_ENV" == "daros_dash" ]]; then
-    echo "✓ Conda environment 'daros_dash' activated successfully"
-    echo "✓ Python version: $(python --version)"
-    echo "✓ Environment ready for DASH robot motion retargeting!"
+    echo "Conda environment 'daros_dash' activated successfully"
+    echo "Python version: $(python --version)"
+    echo "Environment ready for DASH robot motion retargeting!"
     echo ""
     echo "Available commands:"
     echo "  python scripts/smplx_to_robot.py --robot dash --smplx_file <motion_file>"
@@ -22,7 +22,7 @@ if [[ "$CONDA_DEFAULT_ENV" == "daros_dash" ]]; then
     echo ""
     echo "To deactivate: conda deactivate"
 else
-    echo "✗ Failed to activate conda environment"
+    echo "Failed to activate conda environment"
     exit 1
 fi
 
