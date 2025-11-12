@@ -1,0 +1,88 @@
+(daros_dash) anh@anh-ubuntu:~/daros/GMR$ python scripts/dash/extract_urdf_config.py --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
+python scripts/dash/compare_configs.py configs/dash/smplx_to_dash_from_urdf.json \ 
+  general_motion_retargeting/ik_configs/smplx_to_dash.json --include-table2
+Loading robot description from: /home/anh/daros/GMR/assets/DASH_URDF/mjmodel.xml
+Discovered 19 bodies.
+Estimated scale factor (robot / human): 0.537
+
+Configuration written to: /home/anh/daros/GMR/configs/dash/smplx_to_dash_from_urdf.json
+
+Summary:
+  Robot root     : torso
+  Human root     : pelvis
+  # scale entries: 19
+  # IK entries   : 15
+  Warning: human bodies without IK mapping: neck, spine1, spine2, spine3
+==============================================================================================================
+IK Configuration Comparison
+==============================================================================================================
+Config A: /home/anh/daros/GMR/configs/dash/smplx_to_dash_from_urdf.json
+Config B: /home/anh/daros/GMR/general_motion_retargeting/ik_configs/smplx_to_dash.json
+--------------------------------------------------------------------------------------------------------------
+
+Human Scale Table
+------------------------------------------------------------------------
+Body Part           Config A  Config B   Δ (B - A)
+------------------------------------------------------------------------
+left_ankle          0.54  0.45 -0.09
+left_elbow          0.48  0.45 -0.03
+left_foot           0.54  0.55  0.01
+left_hip            0.54  0.55  0.01
+left_knee           0.54  0.55  0.01
+left_shoulder       0.48  0.45 -0.03
+left_wrist          0.48  0.45 -0.03
+neck                0.43   --    -- 
+pelvis              0.54  0.55  0.01
+right_ankle         0.54  0.45 -0.09
+right_elbow         0.48  0.45 -0.03
+right_foot          0.54  0.55  0.01
+right_hip           0.54  0.55  0.01
+right_knee          0.54  0.55  0.01
+right_shoulder      0.48  0.45 -0.03
+right_wrist         0.48  0.45 -0.03
+spine1              0.54  0.55  0.01
+spine2              0.54  0.55  0.01
+spine3              0.54  0.55  0.01
+
+ik_match_table1 differences
+--------------------------------------------------------------------------------------------------------------
+Robot Part        Human (A)     Human (B)       Pos A  Pos B     ΔP  Rot A  Rot B     ΔR            Quat A            Quat B
+--------------------------------------------------------------------------------------------------------------
+l_foot            left_foot     left_foot     100.00100.00  0.00 40.00 40.00  0.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+l_hip             left_hip      left_hip        0.00  0.00  0.00 20.00 20.00  0.00[+0.98, +0.22, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+l_lower_arm       left_wrist    left_wrist      0.00  0.00  0.00 15.00 15.00  0.00[+0.97, +0.00, -0.25, +0.00][+1.00, +0.00, +0.00, +0.00]
+l_lower_leg       left_ankle    left_ankle      0.00  0.00  0.00 20.00 20.00  0.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+l_prox_shoulder   left_shoulder left_shoulder   0.00  0.00  0.00 15.00 15.00  0.00[+1.00, +0.00, +0.00, +0.00][+0.71, +0.00, -0.71, +0.00]
+l_upper_arm       left_elbow    left_elbow      0.00  0.00  0.00 15.00 15.00  0.00[+1.00, +0.00, +0.00, +0.00][+1.00, +0.00, +0.00, +0.00]
+l_upper_leg       left_knee     left_knee       0.00  0.00  0.00 20.00 20.00  0.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+r_foot            right_foot    right_foot    100.00100.00  0.00 40.00 40.00  0.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+r_hip             right_hip     right_hip       0.00  0.00  0.00 20.00 20.00  0.00[+0.98, -0.22, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+r_lower_arm       right_wrist   right_wrist     0.00  0.00  0.00 15.00 15.00  0.00[+0.97, +0.00, -0.25, +0.00][+0.00, +0.00, +0.00, -1.00]
+r_lower_leg       right_ankle   right_ankle     0.00  0.00  0.00 20.00 20.00  0.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+r_prox_shoulder   right_shoulderright_shoulder  0.00  0.00  0.00 15.00 15.00  0.00[+1.00, +0.00, +0.00, +0.00][+0.00, +0.71, +0.00, +0.71]
+r_upper_arm       right_elbow   right_elbow     0.00  0.00  0.00 15.00 15.00  0.00[+1.00, +0.00, +0.00, +0.00][+0.00, +0.00, +0.00, -1.00]
+r_upper_leg       right_knee    right_knee      0.00  0.00  0.00 20.00 20.00  0.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+torso             pelvis        pelvis        100.00100.00  0.00 25.00 25.00  0.00[+1.00, +0.00, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+
+ik_match_table2 differences
+--------------------------------------------------------------------------------------------------------------
+Robot Part        Human (A)     Human (B)       Pos A  Pos B     ΔP  Rot A  Rot B     ΔR            Quat A            Quat B
+--------------------------------------------------------------------------------------------------------------
+l_foot            left_foot     left_foot     100.00100.00  0.00 40.00 30.00-10.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+l_hip             left_hip      left_hip        0.00 15.00 15.00 20.00 10.00-10.00[+0.98, +0.22, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+l_lower_arm       left_wrist    left_wrist      0.00 15.00 15.00 15.00  8.00 -7.00[+0.97, +0.00, -0.25, +0.00][+1.00, +0.00, +0.00, +0.00]
+l_lower_leg       left_ankle    left_ankle      0.00 15.00 15.00 20.00 10.00-10.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+l_prox_shoulder   left_shoulder left_shoulder   0.00 15.00 15.00 15.00  8.00 -7.00[+1.00, +0.00, +0.00, +0.00][+0.71, +0.00, -0.71, +0.00]
+l_upper_arm       left_elbow    left_elbow      0.00 15.00 15.00 15.00  8.00 -7.00[+1.00, +0.00, +0.00, +0.00][+1.00, +0.00, +0.00, +0.00]
+l_upper_leg       left_knee     left_knee       0.00 15.00 15.00 20.00 10.00-10.00[+1.00, +0.01, +0.01, +0.01][+0.50, -0.50, -0.50, -0.50]
+r_foot            right_foot    right_foot    100.00100.00  0.00 40.00 30.00-10.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+r_hip             right_hip     right_hip       0.00 15.00 15.00 20.00 10.00-10.00[+0.98, -0.22, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+r_lower_arm       right_wrist   right_wrist     0.00 15.00 15.00 15.00  8.00 -7.00[+0.97, +0.00, -0.25, +0.00][+0.00, +0.00, +0.00, -1.00]
+r_lower_leg       right_ankle   right_ankle     0.00 15.00 15.00 20.00 10.00-10.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+r_prox_shoulder   right_shoulderright_shoulder  0.00 15.00 15.00 15.00  8.00 -7.00[+1.00, +0.00, +0.00, +0.00][+0.00, +0.71, +0.00, +0.71]
+r_upper_arm       right_elbow   right_elbow     0.00 15.00 15.00 15.00  8.00 -7.00[+1.00, +0.00, +0.00, +0.00][+0.00, +0.00, +0.00, -1.00]
+r_upper_leg       right_knee    right_knee      0.00 15.00 15.00 20.00 10.00-10.00[+1.00, -0.01, +0.01, -0.01][+0.50, -0.50, -0.50, -0.50]
+torso             pelvis        pelvis        100.00100.00  0.00 25.00 15.00-10.00[+1.00, +0.00, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+
+Comparison complete.

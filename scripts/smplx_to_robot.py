@@ -33,7 +33,7 @@ if __name__ == "__main__":
                  "booster_t1", "booster_t1_29dof","stanford_toddy", "fourier_n1", 
                 "engineai_pm01", "kuavo_s45", "hightorque_hi", "galaxea_r1pro", "berkeley_humanoid_lite", "booster_k1",
                 "pnd_adam_lite", "openloong", "tienkung", "dash"],
-        default="unitree_g1",
+        default="dash",
     )
     
     parser.add_argument(

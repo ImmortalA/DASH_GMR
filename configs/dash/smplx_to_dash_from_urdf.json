@@ -2,28 +2,29 @@
     "robot_root_name": "torso",
     "human_root_name": "pelvis",
     "ground_height": 0.0,
-    "human_height_assumption": 1.8319240556762808,
+    "human_height_assumption": 1.8,
     "use_ik_match_table1": true,
     "use_ik_match_table2": true,
     "human_scale_table": {
-        "pelvis": 0.54,
-        "spine1": 0.54,
-        "spine2": 0.54,
-        "spine3": 0.54,
-        "left_hip": 0.54,
-        "right_hip": 0.54,
-        "left_knee": 0.54,
-        "right_knee": 0.54,
-        "left_ankle": 0.54,
-        "right_ankle": 0.54,
-        "left_foot": 0.54,
-        "right_foot": 0.54,
-        "left_shoulder": 0.48,
-        "right_shoulder": 0.48,
-        "left_elbow": 0.48,
-        "right_elbow": 0.48,
-        "left_wrist": 0.48,
-        "right_wrist": 0.48
+        "pelvis": 0.537,
+        "spine1": 0.537,
+        "spine2": 0.537,
+        "spine3": 0.537,
+        "neck": 0.429,
+        "left_hip": 0.537,
+        "right_hip": 0.537,
+        "left_knee": 0.537,
+        "right_knee": 0.537,
+        "left_ankle": 0.537,
+        "right_ankle": 0.537,
+        "left_foot": 0.537,
+        "right_foot": 0.537,
+        "left_shoulder": 0.483,
+        "right_shoulder": 0.483,
+        "left_elbow": 0.483,
+        "right_elbow": 0.483,
+        "left_wrist": 0.483,
+        "right_wrist": 0.483
     },
     "ik_match_table1": {
         "torso": [
@@ -271,7 +272,7 @@
         "torso": [
             "pelvis",
             100,
-            15,
+            25,
             [
                 0.0,
                 0.0,
@@ -286,8 +287,8 @@
         ],
         "r_hip": [
             "right_hip",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -302,8 +303,8 @@
         ],
         "r_upper_leg": [
             "right_knee",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -318,8 +319,8 @@
         ],
         "r_lower_leg": [
             "right_ankle",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -335,7 +336,7 @@
         "r_foot": [
             "right_foot",
             100,
-            30,
+            40,
             [
                 0.0,
                 0.0,
@@ -350,8 +351,8 @@
         ],
         "l_hip": [
             "left_hip",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -366,8 +367,8 @@
         ],
         "l_upper_leg": [
             "left_knee",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -382,8 +383,8 @@
         ],
         "l_lower_leg": [
             "left_ankle",
-            15,
-            10,
+            0,
+            20,
             [
                 0.0,
                 0.0,
@@ -399,7 +400,7 @@
         "l_foot": [
             "left_foot",
             100,
-            30,
+            40,
             [
                 0.0,
                 0.0,
@@ -414,8 +415,8 @@
         ],
         "r_prox_shoulder": [
             "right_shoulder",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
@@ -430,8 +431,8 @@
         ],
         "r_upper_arm": [
             "right_elbow",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
@@ -446,8 +447,8 @@
         ],
         "r_lower_arm": [
             "right_wrist",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
@@ -462,8 +463,8 @@
         ],
         "l_prox_shoulder": [
             "left_shoulder",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
@@ -478,8 +479,8 @@
         ],
         "l_upper_arm": [
             "left_elbow",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
@@ -494,8 +495,8 @@
         ],
         "l_lower_arm": [
             "left_wrist",
+            0,
             15,
-            8,
             [
                 0.0,
                 0.0,
