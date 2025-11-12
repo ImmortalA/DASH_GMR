@@ -48,13 +48,12 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 
 ### **Active Configuration**
 - **Location**: `general_motion_retargeting/ik_configs/smplx_to_dash.json`
-- **Type**: Motion-optimized configuration (recommended)
-- **Features**: Motion-based scaling, optimized weights, proper joint alignment
+- **Type**: URDF-enhanced configuration (recommended)
+- **Features**: URDF-derived quaternions, motion-optimized weights, precise joint alignment
 
 ### **Alternative Configurations**
-- **Optimized**: `configs/dash/smplx_to_dash_optimized.json` (Motion-optimized)
-- **Corrected**: `configs/dash/smplx_to_dash_corrected.json` (Basic corrections)
-- **Backup**: `general_motion_retargeting/ik_configs/smplx_to_dash.json.backup` (Original)
+- **URDF Baseline**: `configs/dash/smplx_to_dash_from_urdf.json` (Extracted from MJCF/URDF)
+- **Backup**: `general_motion_retargeting/ik_configs/smplx_to_dash.json.bak-20251112-2` (Pre-URDF backup)
 
 ## Test Results
 
@@ -86,11 +85,12 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 
 ## Key Features
 
-### **Motion-Optimized Configuration**
-- **Scale factors**: Derived from actual human motion analysis
-- **Weight distribution**: Feet (100/40), Torso (100/25), Joints (0/20)
-- **Joint alignment**: Corrected rotation offsets for each robot joint
+### **URDF-Enhanced Configuration**
+- **Quaternions**: Extracted from robot MJCF/URDF geometry for precise joint alignment
+- **Scale factors**: Derived from robot link lengths (0.54 torso/legs, 0.48 arms)
+- **Weight distribution**: Motion-optimized weights (Feet 100/40, Torso 100/25, Joints 0/20)
 - **Dual IK tables**: Primary for stability, secondary for fine-tuning
+- **Hybrid approach**: Combines geometric accuracy with motion-tuned stability
 
 ### **Supported Motion Formats**
 - **SMPLX**: AMASS dataset, OMOMO dataset
@@ -116,4 +116,4 @@ For questions or issues:
 
 **Last Updated**: November 12, 2025  
 **Status**: Production Ready  
-**Quality**: Motion-Optimized
+**Quality**: URDF-Enhanced (Geometric Accuracy + Motion Optimization)

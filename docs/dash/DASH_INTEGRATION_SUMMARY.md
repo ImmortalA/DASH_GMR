@@ -19,16 +19,19 @@ The DASH humanoid robot has been successfully integrated into the GMR (General M
 - **Mesh Files**: `assets/DASH_URDF/mesh/` (all STL files)
 - **Parameter Registration**: Complete integration in `params.py`
 
-### **2. IK Configuration (Motion-Optimized)**
-- **Primary Config**: `smplx_to_dash.json` (Motion-optimized)
+### **2. IK Configuration (URDF-Enhanced)**
+- **Primary Config**: `smplx_to_dash.json` (URDF-derived quaternions + motion-optimized weights)
 - **BVH Support**: `bvh_lafan1_to_dash.json`
-- **Backup Configs**: Original, corrected, and optimized versions
+- **Backup Configs**: 
+  - `smplx_to_dash.json.bak-20251112-2` (Pre-URDF backup)
+  - `configs/dash/smplx_to_dash_from_urdf.json` (URDF-extracted baseline)
 
 ### **3. Key Configuration Features**
-- **Motion-based scaling**: Scale factors derived from actual human motion analysis
-- **Optimized weights**: Feet (100/40), Torso (100/25), Joints (0/20)
-- **Proper joint alignment**: Corrected rotation offsets for each robot joint
+- **URDF-derived geometry**: Quaternions and scale factors extracted from robot MJCF/URDF
+- **Motion-optimized weights**: Feet (100/40), Torso (100/25), Joints (0/20)
+- **Precise joint alignment**: Exact rotation offsets from robot model geometry
 - **Dual IK tables**: Primary for stability, secondary for fine-tuning
+- **Hybrid approach**: Combines geometric accuracy with motion-tuned stability
 
 ## Testing Results
 
@@ -94,17 +97,20 @@ python scripts/bvh_to_robot.py --robot dash --bvh_file your_motion.bvh --save_pa
 
 ## Configuration Analysis
 
-### **Motion-Based Optimization Process**
-1. **Human Motion Analysis**: Analyzed 55 body parts from actual motion data
-2. **Scale Factor Calculation**: Derived from motion ranges and robot dimensions
-3. **Weight Optimization**: Based on movement importance and stability requirements
-4. **Joint Alignment**: Corrected rotation offsets for proper joint mapping
+### **Configuration Optimization Process**
+1. **URDF Extraction**: Extracted baseline configuration from robot MJCF/URDF geometry
+2. **Motion Analysis**: Analyzed 55 body parts from actual motion data
+3. **Hybrid Integration**: Combined URDF-derived quaternions with motion-optimized weights
+4. **Scale Factor Refinement**: Updated to match robot link lengths (0.54 torso/legs, 0.48 arms)
+5. **Weight Optimization**: Based on movement importance and stability requirements
 
 ### **Key Improvements Over Standard Configuration**
+- **Geometric Accuracy**: Quaternions match actual robot link orientations from MJCF
 - **Better Motion Following**: Robot tracks human movement more accurately
 - **Improved Balance**: Higher foot weights prevent falling
 - **Natural Arm Movement**: Proper scaling and joint alignment
 - **Stable Performance**: Consistent 29-30 FPS rendering
+- **Precise Alignment**: All joint rotations derived from robot model geometry
 
 ## Performance Comparison
 

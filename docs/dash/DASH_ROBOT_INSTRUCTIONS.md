@@ -196,23 +196,40 @@ python scripts/bvh_to_robot.py --robot dash --bvh_file YOUR_BVH_FILE.bvh --save_
 
 ## Configuration Files
 
-### IK Configuration (Optimized)
-- **SMPLX to DASH**: `general_motion_retargeting/ik_configs/smplx_to_dash.json` (Motion-optimized)
+### IK Configuration (URDF-Enhanced)
+- **SMPLX to DASH**: `general_motion_retargeting/ik_configs/smplx_to_dash.json` (URDF-derived quaternions + motion-optimized weights)
 - **BVH to DASH**: `general_motion_retargeting/ik_configs/bvh_lafan1_to_dash.json`
 - **Backup Configs**: 
-  - `smplx_to_dash.json.backup` (Original)
-  - `configs/dash/smplx_to_dash_corrected.json` (Corrected)
-  - `configs/dash/smplx_to_dash_optimized.json` (Motion-optimized)
+  - `smplx_to_dash.json.bak-20251112-2` (Pre-URDF backup)
+  - `configs/dash/smplx_to_dash_from_urdf.json` (URDF-extracted baseline)
 
 ### Robot Model
 - **DASH XML**: `assets/DASH_URDF/mjmodel.xml`
+- **DASH URDF**: `assets/DASH_URDF/robot.urdf`
 - **DASH Meshes**: `assets/DASH_URDF/mesh/`
 
 ### Key Configuration Features
-- **Motion-based scaling**: Scale factors derived from actual human motion analysis
-- **Optimized weights**: Feet (100/40), Torso (100/25), Joints (0/20)
-- **Proper joint alignment**: Corrected rotation offsets for each robot joint
+- **URDF-derived geometry**: Quaternions and scale factors extracted from robot MJCF/URDF
+- **Motion-optimized weights**: Feet (100/40), Torso (100/25), Joints (0/20)
+- **Precise joint alignment**: Exact rotation offsets from robot model geometry
 - **Dual IK tables**: Primary for stability, secondary for fine-tuning
+- **Hybrid approach**: Combines geometric accuracy with motion-tuned stability
+
+### Extracting Configuration from URDF
+To extract a baseline configuration from the robot URDF/MJCF:
+```bash
+python scripts/dash/extract_urdf_config.py \
+  --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
+```
+
+To compare configurations:
+```bash
+python scripts/dash/compare_configs.py \
+  configs/dash/smplx_to_dash_from_urdf.json \
+  general_motion_retargeting/ik_configs/smplx_to_dash.json \
+  --include-table2
+```
 
 ## Troubleshooting
 

@@ -74,11 +74,21 @@ This will print all robot body names, DoF names, and motor names.
 **Method 2: Check the robot XML/MJCF file**
 Look in `assets/dash/mjmodel.xml` or similar for `<body>` tags.
 
-**Method 3: Use extraction script**
+**Method 3: Use extraction script (Recommended)**
 ```bash
-# Generates configs/dash/smplx_to_dash_from_urdf.json by default
-python scripts/dash/extract_urdf_config.py --urdf assets/DASH_URDF/mjmodel.xml
+# Extract baseline configuration from robot URDF/MJCF
+python scripts/dash/extract_urdf_config.py \
+  --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
 ```
+
+This script automatically:
+- Extracts all robot body names from the MJCF/URDF
+- Calculates scale factors from robot link lengths
+- Extracts quaternion orientations from robot geometry
+- Generates a baseline configuration file
+
+**Note**: The extracted config provides accurate geometry but may need weight tuning for optimal motion quality.
 
 ### Step 2: Get Human Body Names
 
@@ -687,38 +697,54 @@ This section explains the complete `smplx_to_dash.json` file line by line, expla
 
 **Format**: Quaternions are in **wxyz** order (scalar first, then vector components)
 
-**Common quaternions used in DASH config:**
+**Common quaternions used in DASH config (URDF-derived):**
 
-1. **`[0.5, -0.5, -0.5, -0.5]`** - 180° rotation
-   - Used for: Torso, hips, legs, feet
-   - Purpose: Coordinate frame alignment between human and robot
-   - Effect: Rotates coordinate system 180° to match robot's orientation
+1. **`[1.0, 0.0, 0.0, 0.0]`** - Identity (no rotation)
+   - Used for: Torso, shoulders, upper arms
+   - Purpose: No rotation needed - extracted from robot geometry
+   - Source: Directly from MJCF/URDF body orientations
 
-2. **`[1.0, 0.0, 0.0, 0.0]`** - Identity (no rotation)
-   - Used for: Left upper arm, left lower arm
-   - Purpose: No rotation needed - human and robot align naturally
-   - Effect: No rotation applied
+2. **`[0.976296, ±0.216438, 0.0, 0.0]`** - Hip rotation
+   - Used for: Left/right hips
+   - Purpose: Actual hip joint orientation from robot model
+   - Source: Extracted from MJCF `<body>` quaternion attributes
 
-3. **`[0.0, 0.707, 0.0, 0.707]`** - 90° rotation around Y-axis
-   - Used for: Right proximal shoulder
-   - Purpose: Aligns right shoulder joint orientation
-   - Effect: Rotates 90° around Y-axis (vertical axis)
+3. **`[0.999799, ±0.012286, 0.010319, ±0.012009]`** - Leg orientation
+   - Used for: Upper legs, lower legs, feet
+   - Purpose: Precise leg link orientations from robot geometry
+   - Source: Extracted from MJCF kinematic chain
 
-4. **`[0.707, 0.0, -0.707, 0.0]`** - 90° rotation around X-axis
-   - Used for: Left proximal shoulder
-   - Purpose: Mirrors right shoulder alignment for left side
-   - Effect: Rotates 90° around X-axis (horizontal axis, forward-backward)
-
-5. **`[0.0, 0.0, 0.0, -1.0]`** - 180° rotation around Z-axis
-   - Used for: Right upper arm, right lower arm
-   - Purpose: Aligns right arm orientation
-   - Effect: Rotates 180° around Z-axis (vertical axis, left-right)
+4. **`[0.968912, 0.0, -0.247404, 0.0]`** - Lower arm rotation
+   - Used for: Lower arms (elbow joint orientation)
+   - Purpose: Elbow joint rotation from robot model
+   - Source: Extracted from MJCF arm chain geometry
 
 **How to determine quaternion values:**
+
+**Method 1: Extract from URDF/MJCF (Recommended)**
+```bash
+# Extract baseline config with accurate quaternions
+python scripts/dash/extract_urdf_config.py \
+  --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
+```
+This automatically extracts quaternions from the robot model's `<body>` tags.
+
+**Method 2: Manual determination**
 - Start with identity `[1.0, 0.0, 0.0, 0.0]` if unsure
 - Test different rotations if robot appears misaligned
 - Use visualization to check alignment
 - Common patterns: 180° rotations for coordinate alignment, 90° rotations for joint alignment
+
+**Method 3: Compare with existing configs**
+```bash
+# Compare URDF-extracted config with current config
+python scripts/dash/compare_configs.py \
+  configs/dash/smplx_to_dash_from_urdf.json \
+  general_motion_retargeting/ik_configs/smplx_to_dash.json \
+  --include-table2
+```
+This shows differences in quaternions, helping you identify which values to update.
 
 ### Why Two IK Tables?
 
@@ -748,9 +774,11 @@ This section explains the complete `smplx_to_dash.json` file line by line, expla
 
 | Value | Type | Meaning | Example Usage |
 |-------|------|---------|---------------|
-| **0.55** | Scale factor | Robot is 55% of human size | Torso, hips, knees, spine, feet |
-| **0.45** | Scale factor | Robot is 45% of human size | Ankles, shoulders, elbows, wrists |
-| **0.4** | Scale factor | Robot is 40% of human size | Neck, head, collar, fingers |
+| **0.54** | Scale factor | Robot is 54% of human size (URDF-derived) | Torso, hips, knees, ankles, spine, feet |
+| **0.48** | Scale factor | Robot is 48% of human size (URDF-derived) | Shoulders, elbows, wrists |
+| **0.55** | Scale factor | Robot is 55% of human size (legacy) | Alternative scaling (older configs) |
+| **0.45** | Scale factor | Robot is 45% of human size (legacy) | Alternative scaling (older configs) |
+| **0.4** | Scale factor | Robot is 40% of human size | Neck, head, collar, fingers (if applicable) |
 | **100** | Position weight | Maximum priority (critical) | Torso, feet (stability) |
 | **15** | Position weight | Medium priority | Joints in table 2 (smoothness) |
 | **0** | Position weight | No position tracking | Joints in table 1 (rotation only) |
@@ -771,5 +799,150 @@ This section explains the complete `smplx_to_dash.json` file line by line, expla
 
 ---
 
-**Next Steps**: Start with an existing config, modify it for your robot, test with visualization, and iterate until you get good results!
+## Extracting Configuration from URDF/MJCF
+
+For new robots, you can extract a baseline configuration directly from the robot's URDF or MJCF file. This provides accurate quaternions and scale factors based on the robot's actual geometry.
+
+### Step 1: Extract Baseline Configuration
+
+```bash
+python scripts/dash/extract_urdf_config.py \
+  --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
+```
+
+**What this does:**
+- Parses the MJCF/URDF file to find all robot bodies
+- Extracts quaternion orientations from each body's `quat` attribute
+- Calculates scale factors by comparing robot link lengths to human proportions
+- Generates a complete baseline configuration file
+
+### Step 2: Compare with Existing Config
+
+Before applying URDF-derived values, compare the extracted baseline with your current configuration to see what needs updating.
+
+```bash
+python scripts/dash/compare_configs.py \
+  configs/dash/smplx_to_dash_from_urdf.json \
+  general_motion_retargeting/ik_configs/smplx_to_dash.json \
+  --include-table2
+```
+
+**What this shows:**
+- **Scale factor differences**: Shows which body parts have different scale values
+- **Quaternion differences**: Displays exact quaternion values from both configs side-by-side
+- **IK weight differences**: Compares position and rotation weights in both tables
+- **Side-by-side comparison**: Easy to see what changed and what stayed the same
+
+**Example output:**
+```
+Human Scale Table
+------------------------------------------------------------------------
+Body Part           Config A  Config B   Δ (B - A)
+------------------------------------------------------------------------
+left_ankle          0.54  0.45 -0.09
+left_elbow          0.48  0.45 -0.03
+...
+
+ik_match_table1 differences
+--------------------------------------------------------------------------------------------------------------
+Robot Part        Human (A)     Human (B)       Pos A  Pos B     ΔP  Rot A  Rot B     ΔR            Quat A            Quat B
+--------------------------------------------------------------------------------------------------------------
+r_hip             right_hip     right_hip       0.00  0.00  0.00 20.00 20.00  0.00[+0.98, -0.22, +0.00, +0.00][+0.50, -0.50, -0.50, -0.50]
+...
+```
+
+**What to look for:**
+- ✅ **Quaternions**: URDF config (Config A) has precise values from robot geometry
+- ✅ **Scale factors**: URDF config has values derived from link lengths
+- ⚠️ **Weights**: Current config (Config B) may have better-tuned weights from motion optimization
+
+### Step 3: Apply URDF-Derived Values
+
+Based on the comparison, selectively apply URDF-derived values to your current configuration.
+
+**Recommended approach (hybrid):**
+1. **Copy quaternions** from URDF-extracted config (geometric accuracy)
+2. **Copy scale factors** from URDF-extracted config (matches robot dimensions)
+3. **Keep tuned weights** from existing config (motion-optimized stability)
+
+**Step-by-step process:**
+
+1. **Backup your current config:**
+   ```bash
+   cp general_motion_retargeting/ik_configs/smplx_to_dash.json \
+      general_motion_retargeting/ik_configs/smplx_to_dash.json.bak-$(date +%Y%m%d)
+   ```
+
+2. **Open both config files side-by-side:**
+   - URDF-extracted: `configs/dash/smplx_to_dash_from_urdf.json`
+   - Current config: `general_motion_retargeting/ik_configs/smplx_to_dash.json`
+
+3. **Update quaternions in `ik_match_table1`:**
+   - For each robot body part, copy the quaternion array `[w, x, y, z]` from URDF config
+   - Replace the quaternion in your current config
+   - Example: Update `r_hip` quaternion from `[0.5, -0.5, -0.5, -0.5]` to `[0.976296, -0.216438, 0.0, 0.0]`
+
+4. **Update quaternions in `ik_match_table2`:**
+   - Repeat the same process for the secondary IK table
+   - Keep the same quaternions as table 1 for consistency
+
+5. **Update scale factors in `human_scale_table`:**
+   - Copy scale values from URDF config
+   - Example: Update `left_ankle` from `0.45` to `0.54`
+
+6. **Keep all weights unchanged:**
+   - Don't change position or rotation weights
+   - These are motion-optimized and should be preserved
+
+**Complete example workflow:**
+```bash
+# 1. Extract baseline from URDF
+python scripts/dash/extract_urdf_config.py \
+  --urdf assets/DASH_URDF/mjmodel.xml \
+  --output configs/dash/smplx_to_dash_from_urdf.json
+
+# 2. Backup current config
+cp general_motion_retargeting/ik_configs/smplx_to_dash.json \
+   general_motion_retargeting/ik_configs/smplx_to_dash.json.bak-$(date +%Y%m%d)
+
+# 3. Compare to see differences
+python scripts/dash/compare_configs.py \
+  configs/dash/smplx_to_dash_from_urdf.json \
+  general_motion_retargeting/ik_configs/smplx_to_dash.json \
+  --include-table2 > comparison_report.txt
+
+# 4. Review comparison_report.txt to see what needs updating
+
+# 5. Manually edit smplx_to_dash.json:
+#    - Update quaternions in both ik_match_table1 and ik_match_table2
+#    - Update scale factors in human_scale_table
+#    - Keep all weights unchanged
+
+# 6. Test with visualization
+python scripts/smplx_to_robot.py \
+  --robot dash \
+  --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz \
+  --save_path test_results/dash/test_urdf_enhanced.pkl
+
+# 7. Visualize and compare
+./scripts/dash/compare_motion.sh
+```
+
+### Benefits of URDF-Derived Configuration
+
+- ✅ **Geometric accuracy**: Quaternions match actual robot link orientations
+- ✅ **Consistent scaling**: Scale factors derived from robot link lengths
+- ✅ **Reduced guesswork**: No need to manually determine quaternion values
+- ✅ **Better alignment**: Robot links align more precisely with human motion targets
+
+### Limitations
+
+- ⚠️ **Weights still need tuning**: URDF extraction provides geometry, not motion quality
+- ⚠️ **May need refinement**: Test and adjust weights based on motion quality
+- ⚠️ **Not all robots supported**: Extraction script may need adaptation for different URDF formats
+
+---
+
+**Next Steps**: Start with an existing config, extract URDF baseline if available, combine the best of both (geometry + weights), test with visualization, and iterate until you get good results!
 
