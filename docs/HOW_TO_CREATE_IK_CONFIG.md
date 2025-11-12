@@ -66,13 +66,13 @@ First, you need to know all the body part names in your robot model.
 
 **Method 1: Use the retargeting system**
 ```bash
-python -c "from general_motion_retargeting import GeneralMotionRetargeting; gmr = GeneralMotionRetargeting('smplx', 'your_robot', verbose=True)"
+python -c "from general_motion_retargeting import GeneralMotionRetargeting; gmr = GeneralMotionRetargeting('smplx', 'dash', verbose=True)"
 ```
 
 This will print all robot body names, DoF names, and motor names.
 
 **Method 2: Check the robot XML/MJCF file**
-Look in `assets/your_robot/mjmodel.xml` or similar for `<body>` tags.
+Look in `assets/dash/mjmodel.xml` or similar for `<body>` tags.
 
 **Method 3: Use extraction script**
 ```bash
@@ -324,7 +324,7 @@ python scripts/dash/compare_configs.py config1.json config2.json
 
 ### 4. Test Configuration
 ```bash
-python scripts/smplx_to_robot.py --robot your_robot --smplx_file motion_file.npz
+python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz
 ```
 
 ### 5. Visualize Comparison
@@ -332,13 +332,13 @@ python scripts/smplx_to_robot.py --robot your_robot --smplx_file motion_file.npz
 ./scripts/dash/compare_motion.sh
 ```
 
-## Example: Creating a Config from Scratch
+## Example: Working with DASH Robot Configuration
 
-Let's say you have a new robot called "my_robot" and want to create `smplx_to_my_robot.json`.
+This example shows how to work with the DASH robot configuration. You can use this as a template for other robots.
 
-### Step 1: Get Robot Body Names
+### Step 1: Get DASH Robot Body Names
 ```bash
-python -c "from general_motion_retargeting import GeneralMotionRetargeting; gmr = GeneralMotionRetargeting('smplx', 'my_robot', verbose=True)"
+python -c "from general_motion_retargeting import GeneralMotionRetargeting; gmr = GeneralMotionRetargeting('smplx', 'dash', verbose=True)"
 ```
 
 Output:
@@ -347,6 +347,16 @@ Body ID 0: world
 Body ID 1: torso
 Body ID 2: r_hip
 Body ID 3: r_upper_leg
+Body ID 4: r_foot
+Body ID 5: l_hip
+Body ID 6: l_upper_leg
+Body ID 7: l_foot
+Body ID 8: r_prox_shoulder
+Body ID 9: r_upper_arm
+Body ID 10: r_lower_arm
+Body ID 11: l_prox_shoulder
+Body ID 12: l_upper_arm
+Body ID 13: l_lower_arm
 ...
 ```
 
@@ -403,10 +413,16 @@ Map each robot body to a human body:
 ```
 
 ### Step 5: Test and Iterate
-1. Save the file to `general_motion_retargeting/ik_configs/smplx_to_my_robot.json`
-2. Test with a motion file
-3. Visualize and compare
-4. Adjust weights, scales, and offsets as needed
+1. The DASH config is already saved at `general_motion_retargeting/ik_configs/smplx_to_dash.json`
+2. Test with a motion file:
+   ```bash
+   python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz
+   ```
+3. Visualize and compare:
+   ```bash
+   ./scripts/dash/compare_motion.sh
+   ```
+4. Adjust weights, scales, and offsets in the config file as needed
 5. Repeat until motion looks good
 
 ## Common Issues and Solutions
