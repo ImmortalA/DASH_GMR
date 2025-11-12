@@ -131,12 +131,12 @@ python scripts/smplx_to_robot.py --robot dash --smplx_file motion_data/ACCAD/Mal
 
 For configuration questions:
 1. Check the documentation in `docs/dash/`
-2. Use the comparison script: `scripts/dash/compare_configs.py`
+2. Use the comparison script: `scripts/dash/compare_configs.py --include-table2`
 3. Test with different configurations
-4. Review the technical analysis in `docs/dash/dash_mapping_analysis.md`
+4. Review the guide in `docs/HOW_TO_CREATE_IK_CONFIG.md`
 
 ---
 
-**Last Updated**: October 21, 2025  
+**Last Updated**: November 12, 2025  
 **Status**: Production Ready  
 **Quality**: Motion-Optimized

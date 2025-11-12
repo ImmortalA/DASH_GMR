@@ -1,21 +1,39 @@
 #!/usr/bin/env python3
 """
-Optimize DASH robot IK mapping based on actual human motion analysis
+Optimize DASH robot IK mapping based on actual human motion analysis.
+
+This script inspects a human motion file (NPZ), derives scale factors and
+weights, and writes a suggested DASH configuration JSON.
 """
 
-import json
-import numpy as np
-from general_motion_retargeting.utils.smpl import load_smplx_file, get_smplx_data_offline_fast
+from __future__ import annotations
 
-def analyze_human_motion():
+import argparse
+import json
+from pathlib import Path
+from typing import Dict, Tuple
+
+import numpy as np
+
+from general_motion_retargeting.utils.smpl import (
+    get_smplx_data_offline_fast,
+    load_smplx_file,
+)
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_SMPLX_FILE = REPO_ROOT / "motion_data" / "ACCAD" / "Male1General_c3d" / "General_A1_-_Stand_stageii.npz"
+DEFAULT_OUTPUT = REPO_ROOT / "configs" / "dash" / "smplx_to_dash_optimized.json"
+DEFAULT_SMPLX_FOLDER = REPO_ROOT / "assets" / "body_models" / "models_smplx_v1_1" / "models"
+
+
+def analyze_human_motion(smplx_file: Path, smplx_folder: Path) -> Tuple[Dict, float]:
     """Analyze human motion to understand the movement patterns"""
     
     print("Analyzing human motion patterns...")
     
     # Load motion data
     smplx_data, body_model, smplx_output, actual_human_height = load_smplx_file(
-        'motion_data/ACCAD/Male1General_c3d/General_A1_-_Stand_stageii.npz', 
-        'assets/body_models/models_smplx_v1_1/models'
+        str(smplx_file), str(smplx_folder)
     )
     
     # Get processed data
@@ -41,7 +59,7 @@ def analyze_human_motion():
     
     return motion_ranges, actual_human_height
 
-def create_optimized_config(motion_ranges, human_height):
+def create_optimized_config(motion_ranges: Dict, human_height: float) -> Dict:
     """Create optimized configuration based on motion analysis"""
     
     print("Creating optimized DASH configuration...")
@@ -120,37 +138,68 @@ def create_optimized_config(motion_ranges, human_height):
     
     return config
 
+
 def main():
+    parser = argparse.ArgumentParser(
+        description="Generate a DASH IK configuration from human motion statistics."
+    )
+    parser.add_argument(
+        "--smplx-file",
+        default=str(DEFAULT_SMPLX_FILE),
+        help="Path to the SMPL-X motion NPZ file used for analysis.",
+    )
+    parser.add_argument(
+        "--smplx-folder",
+        default=str(DEFAULT_SMPLX_FOLDER),
+        help="Directory that contains the SMPL-X model files.",
+    )
+    parser.add_argument(
+        "--output",
+        default=str(DEFAULT_OUTPUT),
+        help="Output path for the generated configuration JSON.",
+    )
+
+    args = parser.parse_args()
+
+    smplx_file = Path(args.smplx_file)
+    if not smplx_file.is_absolute():
+        smplx_file = (REPO_ROOT / smplx_file).resolve()
+    if not smplx_file.exists():
+        raise FileNotFoundError(f"SMPL-X motion file not found: {smplx_file}")
+
+    smplx_folder = Path(args.smplx_folder)
+    if not smplx_folder.is_absolute():
+        smplx_folder = (REPO_ROOT / smplx_folder).resolve()
+    if not smplx_folder.exists():
+        raise FileNotFoundError(f"SMPL-X model folder not found: {smplx_folder}")
+
     print("Optimizing DASH robot IK mapping...")
-    
-    # Analyze human motion
-    motion_ranges, human_height = analyze_human_motion()
-    
-    print(f"Human height: {human_height:.3f}m")
-    print(f"Analyzed {len(motion_ranges)} body parts")
-    
-    # Create optimized configuration
+    motion_ranges, human_height = analyze_human_motion(smplx_file, smplx_folder)
+
+    print(f"Human height: {human_height:.3f} m")
+    print(f"Body parts analyzed: {len(motion_ranges)}")
+
     config = create_optimized_config(motion_ranges, human_height)
-    
-    # Save the optimized configuration
-    # Save to configs/dash/ directory
-    os.makedirs('../../configs/dash', exist_ok=True)
-    with open('../../configs/dash/smplx_to_dash_optimized.json', 'w') as f:
+
+    output_path = Path(args.output)
+    if not output_path.is_absolute():
+        output_path = (REPO_ROOT / output_path).resolve()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as f:
         json.dump(config, f, indent=4)
-    
-    print("Optimized configuration saved to: configs/dash/smplx_to_dash_optimized.json")
-    
+
+    print(f"\nOptimized configuration saved to: {output_path}")
     print("\nKey optimizations:")
     print("  1. Motion-based scale factors")
     print("  2. Improved weight distribution")
     print("  3. Better balance between position and rotation tracking")
     print("  4. Optimized for actual human motion patterns")
-    
-    # Show motion analysis
-    print("\nMotion analysis summary:")
+
+    print("\nMotion analysis summary (magnitude > 0.1m):")
     for body_name, motion_data in motion_ranges.items():
-        if motion_data['magnitude'] > 0.1:  # Only show significant movements
-            print(f"  {body_name}: {motion_data['magnitude']:.3f}m range")
+        if motion_data["magnitude"] > 0.1:
+            print(f"  {body_name:<20} {motion_data['magnitude']:.3f} m range")
+
 
 if __name__ == "__main__":
     main()

@@ -78,9 +78,10 @@ cp configs/dash/smplx_to_dash_corrected.json general_motion_retargeting/ik_confi
 ### **Available Scripts**
 - `test_dash_robot.sh` - Automated testing
 - `activate_dash_env.sh` - Environment activation
-- `optimize_dash_mapping.py` - Motion-based optimization
-- `fix_dash_mapping.py` - Basic configuration fixes
-- `extract_urdf_config.py` - URDF configuration extraction
+- `compare_motion.sh` - Side-by-side NPZ/PKL visualization helper
+- `visualize_npz_and_robot.py` - Human vs robot motion viewer
+- `optimize_dash_mapping.py` - Motion-based configuration optimization
+- `extract_urdf_config.py` - MJCF/URDF configuration extraction
 - `compare_configs.py` - Configuration comparison
 
 ## Key Features
@@ -113,6 +114,6 @@ For questions or issues:
 
 ---
 
-**Last Updated**: October 21, 2025  
+**Last Updated**: November 12, 2025  
 **Status**: Production Ready  
 **Quality**: Motion-Optimized

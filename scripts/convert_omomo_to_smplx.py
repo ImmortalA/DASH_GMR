@@ -1,17 +1,31 @@
 import os
+import pickle
+from pathlib import Path
+
 import joblib
 import numpy as np
-import pickle
 
 
-# these paths are from the original OMOMO dataset
-motion_path1 = "/home/yanjieze/projects/g1_wbc/motion_data/omomo_data/train_diffusion_manip_seq_joints24.p"
-motion_path2 = "/home/yanjieze/projects/g1_wbc/motion_data/omomo_data/test_diffusion_manip_seq_joints24.p"
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parent
+
+# these paths are from the OMOMO dataset (relative to the repo root)
+motion_path1 = REPO_ROOT / "motion_data" / "omomo_data" / "train_diffusion_manip_seq_joints24.p"
+motion_path2 = REPO_ROOT / "motion_data" / "omomo_data" / "test_diffusion_manip_seq_joints24.p"
+
+if not motion_path1.exists() or not motion_path2.exists():
+    raise FileNotFoundError(
+        "OMOMO dataset files not found. Expected paths:\n"
+        f"  {motion_path1}\n"
+        f"  {motion_path2}\n"
+        "Please download/extract the dataset under motion_data/omomo_data/."
+    )
+
 all_motion_data1 = joblib.load(motion_path1)
 all_motion_data2 = joblib.load(motion_path2)
 
 # save as individual files
-target_dir = "/home/yanjieze/projects/g1_wbc/motion_data/OMOMO_smplx"
+target_dir = REPO_ROOT / "motion_data" / "OMOMO_smplx"
 os.makedirs(target_dir, exist_ok=True)
 for motion_data in [all_motion_data1, all_motion_data2]:
     for data_name in motion_data.keys():

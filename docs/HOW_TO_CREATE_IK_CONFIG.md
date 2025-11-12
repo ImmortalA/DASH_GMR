@@ -76,7 +76,8 @@ Look in `assets/dash/mjmodel.xml` or similar for `<body>` tags.
 
 **Method 3: Use extraction script**
 ```bash
-python scripts/dash/extract_urdf_config.py  # For DASH example
+# Generates configs/dash/smplx_to_dash_from_urdf.json by default
+python scripts/dash/extract_urdf_config.py --urdf assets/DASH_URDF/mjmodel.xml
 ```
 
 ### Step 2: Get Human Body Names
@@ -114,7 +115,7 @@ Scale factors determine how much to scale human body parts to match robot dimens
 
 **Method 2: Use URDF analysis**
 ```bash
-python scripts/dash/extract_urdf_config.py
+python scripts/dash/extract_urdf_config.py --urdf assets/DASH_URDF/mjmodel.xml
 ```
 
 **Method 3: Motion-based optimization** (Recommended)
@@ -309,7 +310,7 @@ Each entry has 5 components:
 
 ### 1. Extract Robot Body Names
 ```bash
-python scripts/dash/extract_urdf_config.py
+python scripts/dash/extract_urdf_config.py --urdf assets/DASH_URDF/mjmodel.xml
 ```
 
 ### 2. Analyze Motion Data
@@ -319,7 +320,11 @@ python scripts/dash/optimize_dash_mapping.py
 
 ### 3. Compare Configurations
 ```bash
-python scripts/dash/compare_configs.py config1.json config2.json
+# Compare the active DASH config with the optimized reference
+python scripts/dash/compare_configs.py
+
+# Compare any two files (optionally include table2)
+python scripts/dash/compare_configs.py configs/dash/smplx_to_dash_from_urdf.json configs/dash/smplx_to_dash_optimized.json --include-table2
 ```
 
 ### 4. Test Configuration
